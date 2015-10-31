@@ -1,27 +1,14 @@
 (function () {
+        var fs = require('fs');
 
-        var file;
-
-        audio_file.onchange = function(){
-            var files = this.files;
-            file = URL.createObjectURL(files[0]);
-        };
-
-        document.getElementById("playButton").addEventListener("click", function (e) {
-            console.log("Playing " + file);
-            audio_player.src = file;
-            audio_player.play();
-        });
-
-        document.getElementById("stopButton").addEventListener("click", function (e) {
-            audio_player.pause();
-        });
-
+    
         var remote = require('remote');
         var BrowserWindow = remote.require('browser-window');
         var window = BrowserWindow.getFocusedWindow();
         window.$ = window.jQuery = require('./js/vendor/jquery.min.js');
 
+
+        //Titlebar Buttons
         function init() {
 
         document.getElementById("minimize").addEventListener("click", function (e) {

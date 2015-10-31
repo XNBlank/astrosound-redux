@@ -13,7 +13,7 @@ app.on('ready', function() {
     width: 1024,
     height: 720,
     frame: false,
-    'min-width': 800,
+    'min-width': 1000,
     'min-height': 500,
     'accept-first-mouse': true,
     'title-bar-style': 'hidden'

@@ -37,11 +37,15 @@
         </div>
         <div class="playbar">
             <div id="albumart"></div>
-            <div id="playButton"><span class="fui-play"></div>
+            <div id="playButton" class="pause"><span class="fui-play"></div>
             <div id="stopButton"><span class="fui-pause"></div>
             <div id="skipForwardButton"><i class="fa fa-chevron-right"></i></div>
             <div id="skipBackwardButton"><i class="fa fa-chevron-left"></i></div>
-            <input type="range" id="scrubber" value="0" max=""/>
+            <!-- <input type="range" id="scrubber" value="0" max=""/> -->
+            <p id="timeAllotted">00:00:00</p>
+            <div id="timeline">
+                <div id="playhead"></div>
+            </div>
         </div>
 
         <div class="index">
@@ -50,11 +54,13 @@
         </div>
 
     </div>
-    <script src="./modules.js"></script>
+
     <!-- /.container -->
     <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
     <script src="./js/vendor/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./js/music.js"></script>
+    <script src="./modules.js"></script>
     <script src="./js/vendor/video.js"></script>
     <script src="./js/flat-ui.min.js"></script>
 
