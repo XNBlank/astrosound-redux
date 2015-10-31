@@ -1,5 +1,5 @@
 # AstroSound
-## A modern media player made with Electron
+## A modern music player made with Electron
 
 **What is AstroSound?**
 
