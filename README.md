@@ -18,3 +18,4 @@ These are the currently known supported audio types:
 - OGG
 
 ![AstroSound](http://i.imgur.com/ZsOsgix.gif)
+![AstroSound](http://i.imgur.com/Kmj1gWk.gif)
