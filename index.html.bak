@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Flat UI Free 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="./css/vendor/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="./css/flat-ui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/theme.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/vendor/html5shiv.js"></script>
+      <script src="js/vendor/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">AstroSound</div>
+      <div class="title-bar" style="-webkit-app-region: drag">
+          <div id="close">Close</div>
+          <div id="maximize">Maximize</div>
+          <div id="minimize">Minimize</div>
+      </div>
+        <div class="drawer">
+          <div class="menuclear"></div>
+          <li><a href="#"><span class="fui-play"></span>Music</a></li>
+          <li><a href="#"><span class="fui-gear"></span>Settings</a></li>
+        </div>
+    </div>
+    <!-- /.container -->
+    <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
+    <script src="./js/vendor/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./js/vendor/video.js"></script>
+    <script src="./js/flat-ui.min.js"></script>
+    <script src="./modules.js"></script>
+
+  </body>
+</html>

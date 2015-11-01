@@ -18,6 +18,7 @@
       <script src="js/vendor/html5shiv.js"></script>
       <script src="js/vendor/respond.min.js"></script>
     <![endif]-->
+    <script src="./js/vendor/jquery.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -29,11 +30,12 @@
       </div>
         <div class="drawer">
           <div class="menuclear"></div>
-          <li><a href="#"><span class="fa fa-music"></span>Music</a></li>
-          <li><a href="#"><span class="fa fa-list"></span>Playlist</a></li>
-          <li><a href="#"><span class="fui-gear"></span>Settings</a></li>
+          <li><a href="#"><span class="fa fa-fw fa-music"></span>Music</a></li>
+          <li><a href="#"><span class="fa fa-fw fa-list"></span>Playlist</a></li>
+          <li><a href="#"><span class="fa fa-fw fa-cog"></span>Settings</a></li>
 
-
+          <input type="file" id="directory_input" webkitdirectory="" directory=""><label for="directory_input" id="directory_input_label" class="fa fa-fw fa-folder" title="Add Directory"></label>
+          <input id="audio_file" type="file" accept="audio/*" /><label for="audio_file" id="file_input_label" class="fa fa-fw fa-plus" title="Add File"></label>
         </div>
         <div class="playbar">
             <div id="albumart"></div>
@@ -49,8 +51,10 @@
         </div>
 
         <div class="index">
-            <input id="audio_file" type="file" accept="audio/*" />
-            <audio id="audio_player" />
+            <audio id="audio_player" /></audio>
+
+            <div id="result"></div>
+
         </div>
 
     </div>

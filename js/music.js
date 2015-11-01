@@ -2,19 +2,43 @@
 
     //Variables
     var file;
+    var fs = require('fs');
 
     var remote = require('remote');
     var BrowserWindow = remote.require('browser-window');
     var thiswindow = BrowserWindow.getFocusedWindow();
 
     //Audio Management
+    /*
     audio_file.onchange = function(e){
         var files = this.files;
         console.log(e.target.files[0].fileName);
         file = URL.createObjectURL(files[0]);
         filename=file.fileName;
-        console.log(file.duration);
+        console.log(file.path);
     };
+*/
+
+    $(function () {
+        $("#audio_file").on("change", function () {
+            var files = $(this)[0].files;
+            for (var i = 0; i < files.length; ++i) {
+            console.log(files[i].name);
+            document.getElementById("result").innerHTML = files[i].name;
+            file = URL.createObjectURL(files[0]);
+            }
+        });
+    });
+
+    $(function () {
+        $("#directory_input").on("change", function () {
+            var files = $(this)[0].files;
+            for (var i = 0; i < files.length; ++i) {
+            document.getElementById("result").innerHTML = files[i].path;
+            console.log(files[i].path);
+            }
+        });
+    });
 
 
     //Music UI
