@@ -5,7 +5,7 @@
 
 AstroSound is a music player application created with electron, and utilizes a simple modern design that's easy to use and easy to love.
 
-![AstroSound](http://i.imgur.com/zZEuQsW.png)
+![AstroSound](http://i.imgur.com/Ht8yc8e.png)
 __(Screenshot is of an early build. Still a work in progress.)__
 
 **What audio types are supported?**
@@ -16,3 +16,5 @@ These are the currently known supported audio types:
 - M4A
 - WAV (16 and 32 bit)
 - OGG
+
+![AstroSound](http://i.imgur.com/ZsOsgix.gif)
