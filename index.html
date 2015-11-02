@@ -19,6 +19,7 @@
       <script src="js/vendor/respond.min.js"></script>
     <![endif]-->
     <script src="./js/vendor/jquery.min.js"></script>
+    <script src="./js/loadSong.js"></script>
   </head>
   <body>
     <div class="container">
@@ -30,33 +31,54 @@
       </div>
         <div class="drawer">
           <div class="menuclear"></div>
-          <li><a href="#"><span class="fa fa-fw fa-music"></span>Music</a></li>
-          <li><a href="#"><span class="fa fa-fw fa-list"></span>Playlist</a></li>
-          <li><a href="#"><span class="fa fa-fw fa-cog"></span>Settings</a></li>
+          <li id="music_link"><a href="#"><span class="fa fa-fw fa-music"></span>Music</a></li>
+          <li id="playlist_link"><a href="#"><span class="fa fa-fw fa-list"></span>Playlists</a></li>
+          <li id="settings_link"><a href="#"><span class="fa fa-fw fa-cog"></span>Settings</a></li>
+          <li id="about_link"><a href="#"><span class="fa fa-fw fa-info"></span>About</a></li>
 
           <input type="file" id="directory_input" webkitdirectory="" directory=""><label for="directory_input" id="directory_input_label" class="fa fa-fw fa-folder" title="Add Directory"></label>
           <input id="audio_file" type="file" accept="audio/*" /><label for="audio_file" id="file_input_label" class="fa fa-fw fa-plus" title="Add File"></label>
         </div>
         <div class="playbar">
             <div id="albumart"></div>
-            <div id="playButton" class="pause"><span class="fui-play"></div>
-            <div id="stopButton"><span class="fui-pause"></div>
-            <div id="skipForwardButton"><i class="fa fa-chevron-right"></i></div>
-            <div id="skipBackwardButton"><i class="fa fa-chevron-left"></i></div>
+            <div id="playButton" class="pause"><span class="fa fa-play"></div>
+            <div id="stopButton"><span class="fa fa-pause"></div>
+            <div id="skipForwardButton"><i class="fa fa-forward"></i></div>
+            <div id="skipBackwardButton"><i class="fa fa-backward"></i></div>
             <!-- <input type="range" id="scrubber" value="0" max=""/> -->
             <p id="timeAllotted">00:00:00</p>
             <div id="timeline">
                 <div id="playhead"></div>
             </div>
+
+            <div id="repeatButton"><span class="fa fa-fw fa-repeat"><input name="repeat" id="repeatCheck" type="checkbox"></div>
+            <div id="volumeButton"><span class="fa fa-fw fa-volume-up"></div>
+                <div id="volumeBacking"><div id="volumeSlider"><div id="volumeHead"><p id="volumePercent">0%</p><input name="volume" id="volumeCheck" type="checkbox"></div></div></div>
+
         </div>
 
-        <div class="index">
-            <audio id="audio_player" /></audio>
-
+        <div class="index" id="page_music">
             <div id="result"></div>
 
         </div>
 
+        <div class="index" id="page_playlists">
+            <p>Playlists not available yet.</p>
+
+        </div>
+
+        <div class="index" id="page_settings">
+            <p>Settings shit goes here.</p>
+
+        </div>
+
+        <div class="index" id="page_about">
+            <p>AstroSound v0.0-3<br />
+            Created by XNBlank<br />
+            </p>
+
+        </div>
+        <audio id="audio_player" /></audio>
     </div>
 
     <!-- /.container -->

@@ -194,6 +194,7 @@ body, html{
   height: 75px;
   bottom: 0;
   position: absolute;
+  z-index: 2;
 }
 
 #albumart{
@@ -299,6 +300,48 @@ body, html{
     opacity: .5
 }
 
+#repeatButton{
+    display: inline-block;
+    position: absolute;
+    font-size: 32px;
+    top: 10px;
+    left: 900px;
+}
+
+#repeatButton:hover{
+    display: inline-block;
+    position: absolute;
+    font-size: 32px;
+    top: 10px;
+    left: 900px;
+    cursor:pointer;
+    filter:alpha(opacity= 50);
+    opacity: .5
+}
+
+#volumeButton{
+    display: inline-block;
+    position: absolute;
+    font-size: 32px;
+    top: 10px;
+    left: 940px;
+}
+
+#volumeButton:hover{
+    display: inline-block;
+    position: absolute;
+    font-size: 32px;
+    top: 10px;
+    left: 940px;
+    cursor:pointer;
+    filter:alpha(opacity= 50);
+    opacity: .5
+}
+
+#repeatCheck, #volumeCheck{
+    display: none;
+}
+
 #scrubber{
     display: inline-block;
     position: absolute;
@@ -327,6 +370,7 @@ body, html{
     background: rgba(255,255,255,.3);
     cursor:pointer;
 }
+
 #playhead{
 	display: inline-block;
 	width: 10px;
@@ -347,11 +391,72 @@ body, html{
     cursor:pointer;
 }
 
-.index{
-    /*background: #555;*/
-    width: 60%;
-    right: 0;
+#volumeBacking{
+    display: none;
     position: absolute;
+    width: 30px;
+    height: 120px;
+    top: -110px;
+    left: 945px;
+    z-index: 4;
+    /* border-radius: 15px; */
+    background: #15141B;
+}
+
+
+#volumeSlider{
+    display: inline-block;
+    position: absolute;
+    width: 20px;
+    height: 100px;
+    top: 5px;
+    left: 5px;
+    z-index: 4;
+    /* border-radius: 15px; */
+    background: rgba(255,255,255,.3);
+    cursor:pointer;
+}
+
+#volumeHead{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	/* border-radius: 50%; */
+	margin-bottom: 80px;
+	background: rgb(52, 73, 94);
+    cursor:pointer;
+}
+
+#volumeHead:hover, #volumeHead:active{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	/* border-radius: 50%; */
+	margin-bottom: 4px;
+	background: rgb(32, 53, 74);
+    cursor:pointer;
+}
+
+#volumePercent{
+    display: inline-block;
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    left: -50px;
+    top: -5px;
+    /* border-radius: 50%; */
+    margin-bottom: 4px;
+    cursor: default;
+}
+
+.index{
+    width: 100%;
+    left: 260px;
+    position: absolute;
+    max-height: 100%;
+    z-index: 1;
+    padding-bottom: 120px;
+    overflow: overlay;
 }
 
 p#timeAllotted{
@@ -402,4 +507,30 @@ p#timeAllotted{
     font-size: 24px;
     filter:alpha(opacity= 50);
     opacity: .5
+}
+
+#page_about, #page_settings, #page_playlists{
+    display: none;
+}
+
+#result li{
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+  font-size: 20px;
+  text-align: left;
+  background: rgba(255,255,255,0.0);
+  width: 100%;
+}
+
+#result a{
+  background: rgba(255,255,255,0.0);
+  display: inline-block;
+  width: 100%;
+}
+
+#result a:hover{
+  background: rgba(255,255,255,0.1);
+  display: inline-block;
+  width: 100%;
 }

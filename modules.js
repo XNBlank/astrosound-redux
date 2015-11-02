@@ -1,11 +1,39 @@
 (function () {
         var fs = require('fs');
 
-    
+
         var remote = require('remote');
         var BrowserWindow = remote.require('browser-window');
         var window = BrowserWindow.getFocusedWindow();
         window.$ = window.jQuery = require('./js/vendor/jquery.min.js');
+
+        document.getElementById('music_link').addEventListener("click", function (e) {
+            document.getElementById('page_music').style.display = "inherit";
+            document.getElementById('page_playlists').style.display = "none";
+            document.getElementById('page_settings').style.display = "none";
+            document.getElementById('page_about').style.display = "none";
+        });
+
+        document.getElementById('about_link').addEventListener("click", function (e) {
+            document.getElementById('page_music').style.display = "none";
+            document.getElementById('page_settings').style.display = "none";
+            document.getElementById('page_playlists').style.display = "none";
+            document.getElementById('page_about').style.display = "inherit";
+        });
+
+        document.getElementById('playlist_link').addEventListener("click", function (e) {
+            document.getElementById('page_music').style.display = "none";
+            document.getElementById('page_settings').style.display = "none";
+            document.getElementById('page_playlists').style.display = "inherit";
+            document.getElementById('page_about').style.display = "none";
+        });
+
+        document.getElementById('settings_link').addEventListener("click", function (e) {
+            document.getElementById('page_music').style.display = "none";
+            document.getElementById('page_settings').style.display = "inherit";
+            document.getElementById('page_playlists').style.display = "none";
+            document.getElementById('page_about').style.display = "none";
+        });
 
 
         //Titlebar Buttons
