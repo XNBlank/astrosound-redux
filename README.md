@@ -5,7 +5,7 @@
 
 AstroSound is a music player application created with electron, and utilizes a simple modern design that's easy to use and easy to love.
 
-![AstroSound](http://i.imgur.com/B0IwRmG.png)
+![AstroSound](http://i.imgur.com/mieZUZF.png)
 __(Screenshot is of an early build. Still a work in progress.)__
 
 **What audio types are supported?**
