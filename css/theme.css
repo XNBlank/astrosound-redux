@@ -120,12 +120,14 @@ body, html{
   background: rgba(255,255,255,0.0);
   display: inline-block;
   width: 100%;
+  cursor: pointer;
 }
 
 .drawer a:hover{
   background: rgba(255,255,255,0.1);
   display: inline-block;
   width: 100%;
+  cursor: pointer;
 }
 
 .menuclear{
@@ -479,6 +481,7 @@ p#timeAllotted{
     left: 190px;
     display: inline-block;
     font-size: 24px;
+    cursor: pointer;
 }
 
 #file_input_label:hover{
@@ -488,7 +491,8 @@ p#timeAllotted{
     display: inline-block;
     font-size: 24px;
     filter:alpha(opacity= 50);
-    opacity: .5
+    opacity: .5;
+    cursor: pointer;
 }
 
 #directory_input_label{
@@ -497,6 +501,7 @@ p#timeAllotted{
     left: 220px;
     display: inline-block;
     font-size: 24px;
+    cursor: pointer;
 }
 
 #directory_input_label:hover{
@@ -506,14 +511,15 @@ p#timeAllotted{
     display: inline-block;
     font-size: 24px;
     filter:alpha(opacity= 50);
-    opacity: .5
+    opacity: .5;
+    cursor: pointer;
 }
 
 #page_about, #page_settings, #page_playlists{
     display: none;
 }
 
-#result li{
+#result li, #page_about li{
   list-style-type: none;
   margin: 0 auto;
   padding: 0;
@@ -523,14 +529,18 @@ p#timeAllotted{
   width: 100%;
 }
 
-#result a{
+#result a, #page_about a{
   background: rgba(255,255,255,0.0);
   display: inline-block;
   width: 100%;
+  text-align: left;
+  cursor: pointer;
 }
 
-#result a:hover{
+#result a:hover, #page_about a:hover{
   background: rgba(255,255,255,0.1);
   display: inline-block;
   width: 100%;
+  text-align: left;
+  cursor: pointer;
 }

@@ -1,3 +1,5 @@
+"use strict";
+
 var app = require('app');
 var BrowserWindow = require('browser-window');
 
@@ -18,8 +20,10 @@ app.on('ready', function() {
     'accept-first-mouse': true,
     'title-bar-style': 'hidden'
   });
+
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
   mainWindow.on('closed', function() {
     mainWindow = null;
   });
+
 });

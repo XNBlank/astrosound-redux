@@ -19,7 +19,10 @@
       <script src="js/vendor/respond.min.js"></script>
     <![endif]-->
     <script src="./js/vendor/jquery.min.js"></script>
-    <script src="./js/loadSong.js"></script>
+    <script type="text/javascript">
+        "use strict";
+        window.onerror = function(msg, file, line) {console.log("TEST"); alert(msg + "\n" + line); return true; };
+    </script>
   </head>
   <body>
     <div class="container">
@@ -31,10 +34,10 @@
       </div>
         <div class="drawer">
           <div class="menuclear"></div>
-          <li id="music_link"><a href="#"><span class="fa fa-fw fa-music"></span>Music</a></li>
-          <li id="playlist_link"><a href="#"><span class="fa fa-fw fa-list"></span>Playlists</a></li>
-          <li id="settings_link"><a href="#"><span class="fa fa-fw fa-cog"></span>Settings</a></li>
-          <li id="about_link"><a href="#"><span class="fa fa-fw fa-info"></span>About</a></li>
+          <li id="music_link"><a><span class="fa fa-fw fa-music"></span>Music</a></li>
+          <li id="playlist_link"><a><span class="fa fa-fw fa-list"></span>Playlists</a></li>
+          <li id="settings_link"><a><span class="fa fa-fw fa-cog"></span>Settings</a></li>
+          <li id="about_link"><a><span class="fa fa-fw fa-info"></span>About</a></li>
 
           <input type="file" id="directory_input" webkitdirectory="" directory=""><label for="directory_input" id="directory_input_label" class="fa fa-fw fa-folder" title="Add Directory"></label>
           <input id="audio_file" type="file" accept="audio/*" /><label for="audio_file" id="file_input_label" class="fa fa-fw fa-plus" title="Add File"></label>
@@ -68,15 +71,15 @@
         </div>
 
         <div class="index" id="page_settings">
-            <p>Settings shit goes here.</p>
+            <p>Settings stuff goes here.</p>
 
         </div>
 
         <div class="index" id="page_about">
-            <p>AstroSound v0.0-3<br />
-            Created by XNBlank<br />
-            </p>
-
+            <li><a>AstroSound v0.0-3</a></li>
+            <li><a>Created by XNBlank</a></li>
+            <li><a onclick="require('shell').openExternal('https://github.com/XNBlank/AstroSound')"><span class="fa fa-github-alt">&nbsp;Github Page</a></li>
+            <li><a onclick="require('shell').openExternal('http://xnblank.net')"><span class="fa fa-globe">&nbsp;Author's Website</a></li>
         </div>
         <audio id="audio_player" /></audio>
     </div>

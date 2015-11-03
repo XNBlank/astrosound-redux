@@ -56,13 +56,15 @@
     var dirList = getFiles(homeDir + "\\Music");
     var output = "";
     var _output = [];
-    for(i = 0; i < dirList.length; i++){
+    var _outputDir = [];
+    var _outputDirFinal = [];
+    for(var i = 0; i < dirList.length; i++){
         _output[i] = dirList[i].split("/").pop();
-        output += "<li class='song'><a href='#'>" + _output[i] + "</li>";
+        _outputDir[i] = dirList[i].split("\\").join("\\\\").split("\'").join("");
+        output += "<li class='song'><a href='#' onclick='var player = document.getElementById(\"audio_player\"); player.src = \"" + _outputDir[i] + "\"; player.play(); '>" + _output[i] + "</li>";
     }
 
     document.getElementById("result").innerHTML = output;
-
 
     $(function () {
         $("#audio_file").on("change", function () {
@@ -79,6 +81,13 @@
             }
         });
     });
+
+    document.getElementById('audio_player').addEventListener('playing',function() {
+            file = audio_player.src;
+            //audio_player.currentTime = 0;
+            document.getElementById("stopButton").style.color = "";
+            document.getElementById("playButton").style.color = "#16a085";
+        });
 
     $(function () {
         $("#directory_input").on("change", function (e) {
