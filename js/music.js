@@ -53,7 +53,7 @@
 
     //console.log(getFiles(homeDir + "\\Music"));
 
-    var dirList = getFiles(homeDir + "\\Music");
+    var dirList = getFiles(homeDir + "/Music");
     var output = "";
     var _output = [];
     var _outputDir = [];
@@ -268,6 +268,11 @@
       if(repeat == true){
           if(playPercent >= 489){
               music.currentTime = 0;
+          }
+      } else {
+          if(playPercent >= 490){
+              document.getElementById("stopButton").style.color = "#16a085";
+              document.getElementById("playButton").style.color = "";
           }
       }
 
