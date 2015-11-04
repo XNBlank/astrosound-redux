@@ -1,5 +1,6 @@
 # AstroSound
 ## A modern music player made with Electron
+![](http://i.imgur.com/z1drjyG.png)
 
 **What is AstroSound?**
 
