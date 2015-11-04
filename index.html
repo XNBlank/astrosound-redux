@@ -20,8 +20,7 @@
     <![endif]-->
     <script src="./js/vendor/jquery.min.js"></script>
     <script type="text/javascript">
-        "use strict";
-        window.onerror = function(msg, file, line) {console.log("TEST"); alert(msg + "\n" + line); return true; };
+
     </script>
   </head>
   <body>
@@ -48,7 +47,17 @@
             <div id="stopButton"><span class="fa fa-pause"></div>
             <div id="skipForwardButton"><i class="fa fa-forward"></i></div>
             <div id="skipBackwardButton"><i class="fa fa-backward"></i></div>
-            <!-- <input type="range" id="scrubber" value="0" max=""/> -->
+
+            <div id="scrollwrapper" style="">
+                <div style="width:5000px;">
+                    <span id="scrollcontent" style="position:absolute; left:500px;">
+                        <span id="firstcontent" style="float:left; text-align:left;">
+                            <p class="songTitle"></p>
+                        </span>
+                    </span>
+                </div>
+            </div>
+
             <p id="timeAllotted">00:00:00</p>
             <div id="timeline">
                 <div id="playhead"></div>
@@ -71,7 +80,7 @@
         </div>
 
         <div class="index" id="page_settings">
-            <p>Settings stuff goes here.</p>
+            <p class="description">Directories : </p><input class="inputbox" type="text" name="savedDirs" id="savedDirs"> <button type="button" name="reload" class="inputbutton" id="settingsReload">Reload</button>
 
         </div>
 

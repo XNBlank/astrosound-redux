@@ -366,7 +366,7 @@ body, html{
     position: absolute;
     width: 500px;
     height: 20px;
-    top: 30px;
+    top: 42px;
     left: 390px;
     /* border-radius: 15px; */
     background: rgba(255,255,255,.3);
@@ -543,4 +543,48 @@ p#timeAllotted{
   width: 100%;
   text-align: left;
   cursor: pointer;
+}
+
+#scrollwrapper{
+    overflow:hidden;
+    /*border:1px solid #004F72;*/
+    background-color: rgba(0,0,0,0.5);
+    position:absolute;
+    width:500px;
+    height:24px;
+    left: 390px;
+    top: 12px;
+}
+
+.description{
+    display: inline-block;
+    position: absolute;
+    left: 30px;
+    line-height: 1.85;
+}
+
+.inputbox{
+    font-family: monospace;
+    font-size: 18px;
+    line-height: inherit;
+    background-color: #15141B;
+    border: 1px solid #004F72;
+    color: #16A085;
+    width: 400px;
+    position: absolute;
+    left: 150px;
+}
+
+.inputbutton{
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    position: absolute;
+    left: 570px;
+    height: 30px;
+    display: inline-block;
+    color: #16A085;
+    background-color: #15141B;
+    border: 0px;
+    margin-top: 3px;
 }
