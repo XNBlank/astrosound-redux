@@ -22,9 +22,12 @@
     var volumeslider = document.getElementById('volumeSlider');
     var timeline = document.getElementById('timeline');
     var timelineWidth = timeline.offsetWidth - playhead.offsetWidth;
-    var volumesliderHeight = volumeslider.offsetHeight - volumehead.offsetHeight;
-
+    var volumesliderWidth = volumeslider.offsetWidth - volumehead.offsetWidth;
+    var volumeModule = document.getElementById('volumeBacking');
+    console.log(volumesliderWidth + " : " + volumehead.offsetWidth);
+    volumeModule.style.display = "none";
     var savedDirs = [];
+
 
     //Audio Management
 
@@ -83,8 +86,8 @@
 
     //Save that directory
     var homeDir = getUserHome();
-    var saveDir = homeDir + "/.AstroSound";
-    var savePath = path_.join(homeDir + "/.AstroSound", "settings.json");
+    var saveDir = homeDir + "/.astrosound";
+    var savePath = path_.join(homeDir + "/.astrosound", "settings");
     try {
     fs.readFile(savePath, 'utf8', function (err, data) {
         if (err) throw err;
@@ -165,7 +168,24 @@
     });
 
 
-
+    $(function () {
+        $("#audio_file").on("change", function () {
+            var files = $(this)[0].files;
+            var _name = files[0].name;
+            var __dir = files[0].path;
+            var _dir = __dir.split("\\" + _name);
+            console.log(_name);
+            console.log(_dir[0]);
+            //var dirList = getFiles(_dir[0], _name);
+            alert("Got song " + _dir[0] + " : " + _name);
+            file = URL.createObjectURL(files[0]);
+            audio_player.src = file;
+            audio_player.currentTime = 0;
+            audio_player.play();
+            document.getElementById("stopButton").style.color = "";
+            document.getElementById("playButton").style.color = "#16a085";
+        });
+    });
 
 
     function startApp(){
@@ -204,21 +224,6 @@
         location.reload();
     });
 
-    $(function () {
-        $("#audio_file").on("change", function () {
-            var files = $(this)[0].files;
-            for (var i = 0; i < files.length; ++i) {
-            console.log(files[i].name);
-            filename = files[i].name;
-            file = URL.createObjectURL(files[0]);
-            audio_player.src = file;
-            audio_player.currentTime = 0;
-            audio_player.play();
-            document.getElementById("stopButton").style.color = "";
-            document.getElementById("playButton").style.color = "#16a085";
-            }
-        });
-    });
 
     document.getElementById('audio_player').addEventListener('playing',function() {
             file = audio_player.src;
@@ -300,10 +305,10 @@
     }, false);
 
     function clickPercent(e) {
-      return (e.pageX - timeline.offsetLeft) / timelineWidth;
+        return (e.pageX - timeline.offsetLeft) / timelineWidth;
     }
     function volumePercents(e){
-        return (e.pageY - volumeslider.offsetTop) / 100;
+        return (e.pageX - volumeslider.offsetLeft) / volumesliderWidth;
     }
 
     playhead.addEventListener('mousedown', mouseDown, false);
@@ -313,39 +318,33 @@
     var onplayhead = false;
     var onvolumehead = false;
 
-    function mouseDown() {
-        console.log("Clicked Playhead");
-        onplayhead = true;
-        window.addEventListener('mousemove', moveplayhead, true);
-        music.removeEventListener('timeupdate', timeUpdate, false);
-      }
-
-    function mouseUp(e) {
-        if (onplayhead == true) {
-          moveplayhead(e);
-          window.removeEventListener('mousemove', moveplayhead, true);
-          music.currentTime = duration * clickPercent(e);
-          music.addEventListener('timeupdate', timeUpdate, false);
+        function mouseDown() {
+            console.log("Clicked Playhead");
+            onplayhead = true;
+            window.addEventListener('mousemove', moveplayhead, true);
+            music.removeEventListener('timeupdate', timeUpdate, false);
         }
-        if (onvolumehead == true){
-            movevolumehead(e);
-            window.removeEventListener('mousemove', movevolumehead, true);
-            console.log(music.volume);
-            var _perc = volumePercents(e);
-            if(_perc > 1){ _perc = 1};
-            if(_perc < 0){_perc = 0};
-            music.volume = _perc;
 
+        function mouseDown_() {
+          console.log("Clicked VolumeHead");
+          onvolumehead = true;
+          window.addEventListener('mousemove', movevolumehead, true);
         }
-        onplayhead = false;
-        onvolumehead = false;
-      }
 
-    function mouseDown_() {
-        console.log("Clicked VolumeHead");
-        onvolumehead = true;
-        window.addEventListener('mousemove', movevolumehead, true);
-    }
+        function mouseUp(e) {
+            if (onplayhead == true) {
+                moveplayhead(e);
+                window.removeEventListener('mousemove', moveplayhead, true);
+            }
+            if (onvolumehead == true){
+                movevolumehead(e);
+                window.removeEventListener('mousemove', movevolumehead, true);
+                console.log(music.volume);
+            }
+            onplayhead = false;
+            onvolumehead = false;
+        }
+
 
     function moveplayhead(e) {
       var newMargLeft = e.pageX - timeline.offsetLeft;
@@ -358,29 +357,33 @@
       if (newMargLeft > timelineWidth) {
         playhead.style.marginLeft = timelineWidth + "px";
       }
-
+      music.currentTime = duration * clickPercent(e);
+      music.addEventListener('timeupdate', timeUpdate, false);
     }
 
-    function movevolumehead(e){
-        var newMargTop = -e.pageY - volumeslider.offsetTop;
-        console.log("newMargTop : " + newMargTop);
-        if(newMargTop >= 0 && newMargTop <= volumesliderHeight){
-            volumehead.style.marginTop = newMargTop + "px";
-        }
-        if (newMargTop < 0){
-            volumehead.style.marginTop = "0px";
-        }
-        if (newMargTop > volumesliderHeight) {
-          volumehead.style.marginTop = volumesliderHeight + "px";
-        }
-
+    function movevolumehead(e) {
+      var newMargLeft = e.pageX - volumeslider.offsetLeft - volumesliderWidth;
+      if (newMargLeft >= 0 && newMargLeft <= volumesliderWidth) {
+        volumehead.style.marginLeft = newMargLeft + "px";
+      }
+      if (newMargLeft < 0) {
+        volumehead.style.marginLeft = "0px";
+      }
+      if (newMargLeft > timelineWidth) {
+        volumehead.style.marginLeft = volumesliderWidth + "px";
+      }
+      var setVol = (9 * volumePercents(e))/volumesliderWidth;
+      if(setVol > 1){setVol = 1;}
+      if(setVol < 0){setVol = 0;}
+      music.volume = setVol;
     }
+
 
     function timeUpdate() {
       var playPercent = timelineWidth * (music.currentTime / duration);
-      var volPercent = volumesliderHeight * (music.volume / 80);
+      var volPercent = volumesliderWidth * ((music.volume / 90) * 90);
       playhead.style.marginLeft = playPercent + "px";
-      volumehead.style.marginTop = volPercent + "px";
+      volumehead.style.marginLeft = volPercent + "px";
       volumePercent.innerHTML = Math.round(music.volume * 100) + "%";
       var totalSec = music.currentTime;
       var hours = parseInt( totalSec / 3600 ) % 24;

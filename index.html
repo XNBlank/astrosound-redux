@@ -19,9 +19,6 @@
       <script src="js/vendor/respond.min.js"></script>
     <![endif]-->
     <script src="./js/vendor/jquery.min.js"></script>
-    <script type="text/javascript">
-
-    </script>
   </head>
   <body>
     <div class="container">
@@ -65,7 +62,14 @@
 
             <div id="repeatButton"><span class="fa fa-fw fa-repeat"><input name="repeat" id="repeatCheck" type="checkbox"></div>
             <div id="volumeButton"><span class="fa fa-fw fa-volume-up"></div>
-                <div id="volumeBacking"><div id="volumeSlider"><div id="volumeHead"><p id="volumePercent">0%</p><input name="volume" id="volumeCheck" type="checkbox"></div></div></div>
+                <div id="volumeBacking">
+                    <div id="volumeSlider">
+                        <div id="volumeHead">
+                            <p id="volumePercent">100%</p>
+                            <input name="volume" id="volumeCheck" type="checkbox">
+                        </div>
+                    </div>
+                </div>
 
         </div>
 
@@ -80,15 +84,18 @@
         </div>
 
         <div class="index" id="page_settings">
-            <p class="description">Directories : </p><input class="inputbox" type="text" name="savedDirs" id="savedDirs"> <button type="button" name="reload" class="inputbutton" id="settingsReload">Reload</button>
+            <p class="description">Directories : </p><input class="inputbox" type="text" name="savedDirs" id="savedDirs"> <button type="button" name="reload" class="inputbutton" id="settingsReload">Save/Reload</button>
 
         </div>
 
         <div class="index" id="page_about">
             <li><a>AstroSound v0.0-3</a></li>
             <li><a>Created by XNBlank</a></li>
+            <li>&nbsp;</li>
             <li><a onclick="require('shell').openExternal('https://github.com/XNBlank/AstroSound')"><span class="fa fa-github-alt">&nbsp;Github Page</a></li>
             <li><a onclick="require('shell').openExternal('http://xnblank.net')"><span class="fa fa-globe">&nbsp;Author's Website</a></li>
+            <li>&nbsp;</li>
+            <li><a onclick="require('shell').openExternal('https://github.com/XNBlank/AstroSound/issues/new')"><span class="fa fa-bug">&nbsp;Report a Bug</a></li>
         </div>
         <audio id="audio_player" /></audio>
     </div>

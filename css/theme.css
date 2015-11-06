@@ -368,7 +368,6 @@ body, html{
     height: 20px;
     top: 42px;
     left: 390px;
-    /* border-radius: 15px; */
     background: rgba(255,255,255,.3);
     cursor:pointer;
 }
@@ -377,7 +376,6 @@ body, html{
 	display: inline-block;
 	width: 10px;
 	height: 20px;
-	/* border-radius: 50%; */
 	margin-bottom: 4px;
 	background: rgb(52, 73, 94);
     cursor:pointer;
@@ -387,21 +385,19 @@ body, html{
 	display: inline-block;
 	width: 10px;
 	height: 20px;
-	/* border-radius: 50%; */
 	margin-bottom: 4px;
 	background: rgb(32, 53, 74);
     cursor:pointer;
 }
 
 #volumeBacking{
-    display: none;
+    display: inherit;
     position: absolute;
-    width: 30px;
-    height: 120px;
-    top: -110px;
-    left: 945px;
+    width: 170px;
+    height: 30px;
+    top: -30px;
+    left: 840px;
     z-index: 4;
-    /* border-radius: 15px; */
     background: #15141B;
 }
 
@@ -409,32 +405,29 @@ body, html{
 #volumeSlider{
     display: inline-block;
     position: absolute;
-    width: 20px;
-    height: 100px;
+    width: 100px;
+    height: 20px;
     top: 5px;
-    left: 5px;
+    left: 53px;
     z-index: 4;
-    /* border-radius: 15px; */
     background: rgba(255,255,255,.3);
-    cursor:pointer;
+    cursor: pointer;
 }
 
 #volumeHead{
 	display: inline-block;
-	width: 20px;
+	width: 10px;
 	height: 20px;
-	/* border-radius: 50%; */
-	margin-bottom: 80px;
+    margin-bottom: 1px;
 	background: rgb(52, 73, 94);
     cursor:pointer;
 }
 
 #volumeHead:hover, #volumeHead:active{
 	display: inline-block;
-	width: 20px;
+	width: 10px;
 	height: 20px;
-	/* border-radius: 50%; */
-	margin-bottom: 4px;
+	margin-bottom: 1px;
 	background: rgb(32, 53, 74);
     cursor:pointer;
 }
@@ -446,7 +439,6 @@ body, html{
     height: 20px;
     left: -50px;
     top: -5px;
-    /* border-radius: 50%; */
     margin-bottom: 4px;
     cursor: default;
 }
