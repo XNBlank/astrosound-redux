@@ -340,7 +340,26 @@ body, html{
     opacity: .5
 }
 
-#repeatCheck, #volumeCheck{
+#shuffleButton{
+    display: inline-block;
+    position: absolute;
+    font-size: 32px;
+    top: 10px;
+    left: 980px;
+}
+
+#shuffleButton:hover{
+    display: inline-block;
+    position: absolute;
+    font-size: 32px;
+    top: 10px;
+    left: 980px;
+    cursor:pointer;
+    filter:alpha(opacity= 50);
+    opacity: .5
+}
+
+#repeatCheck, #volumeCheck, #shuffleCheck{
     display: none;
 }
 

@@ -10,10 +10,12 @@
     var repeat = false;
     var filename = "";
     var pauseTime;
+    var noSongs;
+    var shuffle = false;
 
     var music = document.getElementById('audio_player');
     var saveDirsText = document.getElementById('savedDirs');
-    var duration = 0;
+    var duration;
     var pButton = document.getElementById('playButton');
     var timeAllotted = document.getElementById('timeAllotted');
     var playhead = document.getElementById('playhead');
@@ -28,6 +30,9 @@
     volumeModule.style.display = "none";
     var savedDirs = [];
 
+    function startsWith (string, prefix) {
+        return string.slice(0, prefix.length) == prefix;
+    }
 
     //Audio Management
 
@@ -206,10 +211,11 @@
             var _outputDir = [];
             var _outputDirFinal = [];
             for(var i = 0; i < dirList.length; i++){
+                var noSongs = i;
                 _output[i] = dirList[i].split("\/").pop();
                 _outputDir[i] = dirList[i].split("\\").join("\\\\");
                 //This is super messy and needs an alternative. For now, this is working.
-                output += "<li class='song'><a href='#' onclick='var player = document.getElementById(\"audio_player\"); player.src = \"" + _outputDir[i] + "\"; player.play(); player.currentTime = 0; var x = document.getElementsByClassName(\"songTitle\"); for (var i = 0; i < x.length; i++){ x[i].innerHTML = \"" + _output[i] + "\";}'>" + _output[i] + "</li>";
+                output += "<li class='song'><a href='#' id='sNo" + i + "' onclick='curSongPlay = 0; curSongPlay = curSongPlay + " + i + "; console.log(curSongPlay); var player = document.getElementById(\"audio_player\"); player.src = \"" + _outputDir[i] + "\"; player.currentTime = 0; player.play(); \ var x = document.getElementsByClassName(\"songTitle\"); for (var i = 0; i < x.length; i++){ x[i].innerHTML = \"" + _output[i] + "\";}'>" + _output[i] + "</li>";
             }
             //Add to the music page.
             document.getElementById("result").innerHTML += output;
@@ -255,6 +261,45 @@
         console.log("Playing " + filename);
     });
 
+    document.getElementById("skipForwardButton").addEventListener("click", function (e) {
+        var _cSong = $('*[id^="sNo"]');
+        var _i;
+        var i = _cSong.length-1;
+        if(shuffle == false){
+            if(curSongPlay == i){
+                console.log("Hit the end of the list!");
+                _i = 0;
+            } else {
+                _i = curSongPlay + 1;
+            }
+        } else {
+            var _i = Math.floor(Math.random() * (i - 0 + 1)) + 0;
+        }
+
+        console.log(i);
+        $("#sNo" + _i).trigger('click');
+    });
+
+    document.getElementById("skipBackwardButton").addEventListener("click", function (e) {
+        var _cSong = $('*[id^="sNo"]');
+        var _i;
+        var i = _cSong.length-1;
+        if(shuffle == false){
+            if(curSongPlay == 0){
+                console.log("This is the start of the list!");
+                _i = i;
+            } else {
+                console.log("Play next song.")
+                _i = curSongPlay - 1;
+            }
+        } else {
+            var _i = Math.floor(Math.random() * (i - 0 + 1)) + 0;
+        }
+
+        console.log(i);
+        $("#sNo" + _i).trigger('click');
+    });
+
     document.getElementById("repeatButton").addEventListener("click", function (e) {
         $('#repeatCheck').each(function () { this.checked = !this.checked; });
         if($('#repeatCheck').is(':checked')){
@@ -266,6 +311,20 @@
             repeat = false;
             console.log("Toggled Repeat off " + repeat);
             document.getElementById("repeatButton").style.color = "";
+        }
+    });
+
+    document.getElementById("shuffleButton").addEventListener("click", function (e) {
+        $('#shuffleCheck').each(function () { this.checked = !this.checked; });
+        if($('#shuffleCheck').is(':checked')){
+            shuffle = true;
+            console.log("Toggled shuffle on " + shuffle);
+            document.getElementById("shuffleButton").style.color = "#16a085";
+        }
+        else{
+            shuffle = false;
+            console.log("Toggled shuffle off " + shuffle);
+            document.getElementById("shuffleButton").style.color = "";
         }
     });
 
@@ -397,7 +456,24 @@
               music.currentTime = 0;
           }
       } else {
+          if(playPercent >= 489){
+              var _cSong = $('*[id^="sNo"]');
+              var _i;
+              var i = _cSong.length-1;
+              if(shuffle == false){
+                  if(curSongPlay == i){
+                      console.log("Hit the end of the list!");
+                      _i = 0;
+                  } else {
+                      _i = curSongPlay + 1;
+                  }
+              } else {
+                  var _i = Math.floor(Math.random() * (i - 0 + 1)) + 0;
+              }
 
+              console.log(i);
+              $("#sNo" + _i).trigger('click');
+          }
       }
 
       if (music.currentTime == duration) {
