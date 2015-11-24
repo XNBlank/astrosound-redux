@@ -3,7 +3,14 @@ body, html{
     padding: 0;
     /*background-color: #15141B;*/
     overflow: hidden;
-    background: rgba(28,28,30,1);
+    background: rgba(37,37,38,1);
+    background: -moz-linear-gradient(top, rgba(37,37,38,1) 0%, rgba(27,24,43,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(37,37,38,1)), color-stop(100%, rgba(27,24,43,1)));
+    background: -webkit-linear-gradient(top, rgba(37,37,38,1) 0%, rgba(27,24,43,1) 100%);
+    background: -o-linear-gradient(top, rgba(37,37,38,1) 0%, rgba(27,24,43,1) 100%);
+    background: -ms-linear-gradient(top, rgba(37,37,38,1) 0%, rgba(27,24,43,1) 100%);
+    background: linear-gradient(to bottom, rgba(37,37,38,1) 0%, rgba(27,24,43,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#252526', endColorstr='#1b182b', GradientType=0 );
 
     height: 100%;
     width: 100%;
@@ -15,27 +22,6 @@ body, html{
     -ms-user-select: none;
     user-select: none;
 }
-
-a{
-    color:#FFF;
-}
-
-.drawer-link-selected{
-    color:#1abc9c;
-}
-
-.drawer-link:hover, .drawer-link-selected:hover{
-    color:#2cddba;
-}
-
-.sLTitle{
-    padding-left: 5px;
-}
-
-::-webkit-scrollbar {
-    display: none;
-}
-
 .container{
   margin: 0;
   padding: 0;
@@ -43,7 +29,7 @@ a{
   width: 100%;
 }
 .title-bar{
-  background-color: rgb(22,22,25);
+  background-color: #15141B;
   display: block;
   width: 100%;
   height: 40px;
@@ -54,96 +40,41 @@ a{
     height: 32px;
     position: absolute;
     text-indent: -10000px;
-    top: 4px;
+    top: 6px;
     width: 32px;
     z-index: 1;
-    background: #010101 url('../img/close.png') no-repeat 4px 4px;
-    color: #FFF;
+    background: transparent url('../img/close.png') no-repeat 4px 4px;
     background-size: 24px 24px;
     right: 6px;
     -webkit-app-region: no-drag;
 }
-
-#close:hover, .close:focus {
-    display: inline-block;
-    height: 32px;
-    position: absolute;
-    text-indent: -10000px;
-    top: 4px;
-    width: 32px;
-    z-index: 1;
-    background: #FF0000 url('../img/close.png') no-repeat 4px 4px;
-    color: #FFF;
-    background-size: 24px 24px;
-    right: 6px;
-    -webkit-app-region: no-drag;
-    cursor:pointer;
-    filter:alpha(opacity=80);
-    opacity: .8
-}
-
 #maximize {
     cursor: pointer;
     display: inline-block;
     height: 32px;
     position: absolute;
     text-indent: -10000px;
-    top: 4px;
+    top: 6px;
     width: 32px;
     z-index: 1;
-    background: #010101 url('../img/maximize.png') no-repeat 4px 4px;
+    background: transparent url('../img/maximize.png') no-repeat 4px 4px;
     background-size: 24px 24px;
-    right: 42px;
+    right: 38px;
     -webkit-app-region: no-drag;
 }
-
-#maximize:hover, .maximize:focus {
-    cursor: pointer;
-    display: inline-block;
-    height: 32px;
-    position: absolute;
-    text-indent: -10000px;
-    top: 4px;
-    width: 32px;
-    z-index: 1;
-    background: #363636 url('../img/maximize.png') no-repeat 4px 4px;
-    background-size: 24px 24px;
-    right: 42px;
-    -webkit-app-region: no-drag;
-    filter:alpha(opacity=80);
-    opacity: .8
-}
-
 #minimize {
     cursor: pointer;
     display: inline-block;
     height: 32px;
     position: absolute;
     text-indent: -10000px;
-    top: 4px;
+    top: 6px;
     width: 32px;
     z-index: 1;
-    background: #010101 url('../img/minimize.png') no-repeat 4px 4px;
+    background: transparent url('../img/minimize.png') no-repeat 4px 4px;
     background-size: 24px 24px;
-    right: 78px;
+    right: 70px;
     -webkit-app-region: no-drag;
-}
-
-#minimize:hover, .minimize:focus {
-    cursor: pointer;
-    display: inline-block;
-    height: 32px;
-    position: absolute;
-    text-indent: -10000px;
-    top: 4px;
-    width: 32px;
-    z-index: 1;
-    background: #363636 url('../img/minimize.png') no-repeat 4px 4px;
-    background-size: 24px 24px;
-    right: 78px;
-    -webkit-app-region: no-drag;
-    filter:alpha(opacity= 80);
-    opacity: .8
 }
 
 .title{
@@ -162,11 +93,11 @@ a{
   display: inline-block;
   position: absolute;
 
-  background: rgb(15,15,16);
+  background: #15141B;
 
-  width: 200px;
+  width: 260px;
   height: 100%;
-  top: 75px;
+  top: 0px;
 }
 
 .drawer span{
@@ -206,34 +137,66 @@ a{
 }
 
 
-.controls, .controls_2{
-    position: absolute;
-    width: 150px;
-    height: 75px;
-    z-index: 3;
+#close {
+  float: right;
+  font-size: 21 px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow:0 1px 0 # fff;
+  filter: alpha(opacity = 20);
+  opacity: .2
 }
-
-.controls_2{
-    right: 20px;
-    top: 40px;
+#close:hover, .close:focus {
+  color: #000;
+  text-decoration:none;
+  cursor:pointer;
+  filter:alpha(opacity=50);
+  opacity: .5
+}
+#maximize {
+  float: right;
+  font-size: 21 px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow:0 1px 0 # fff;
+  filter: alpha(opacity = 20);
+  opacity: .2
+}
+#maximize:hover, .maximize:focus {
+  color: #000;
+  text-decoration:none;
+  cursor:pointer;
+  filter:alpha(opacity=50);
+  opacity: .5
+}
+#minimize {
+  float: right;
+  font-size: 21 px;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow:0 1px 0 # fff;
+  filter: alpha(opacity = 20);
+  opacity: .2
+}
+#minimize:hover, .minimize:focus {
+  color: #000;
+  text-decoration:none;
+  cursor:pointer;
+  filter:alpha(opacity= 50);
+  opacity: .5
 }
 
 .playbar{
-  background-color: rgb(12,12,13);
+  background-color: #15141B;
   display: block;
   width: 100%;
   height: 75px;
-  top: 25;
+  bottom: 0;
   position: absolute;
-  z-index: 1;
-}
-
-.playbar_middle{
-    z-index: 3;
-    height: 75px;
-    width: 100px;
-    margin: 0 auto;
-    position: relative;
+  z-index: 2;
 }
 
 #albumart{
@@ -245,7 +208,7 @@ a{
     display: inline-block;
     position: absolute;
     top: 5px;
-    left: -310px;
+    left: 5px;
 }
 
 #albumart:hover{
@@ -257,104 +220,34 @@ a{
     display: inline-block;
     position: absolute;
     top: 5px;
-    left: -310px;
+    left: 5px;
     cursor:pointer;
-    filter:alpha(opacity= 80);
-    opacity: .8
-}
-
-.fa-play{
-    vertical-align: text-top;
-    text-align: center;
-    line-height: 30px !important;
-    padding-left: 5px;
-}
-
-.fa-pause{
-    vertical-align: text-top;
-    text-align: center;
-    line-height: 30px !important;
-}
-
-.fa-forward{
-    vertical-align: text-top;
-    text-align: center;
-    line-height: 30px !important;
-    padding-left: 5px;
-}
-
-.fa-backward{
-    vertical-align: text-top;
-    text-align: center;
-    line-height: 30px !important;
-    padding-right: 5px;
-}
-
-.fa-repeat{
-    vertical-align: text-top;
-    text-align: center;
-    line-height: 30px !important;
-}
-
-.fa-volume-up{
-    vertical-align: text-top;
-    text-align: center;
-    line-height: 30px !important;
-}
-
-.fa-random{
-    vertical-align: text-top;
-    text-align: center;
-    line-height: 30px !important;
-    padding-top: 1px;
-}
-
-.fa-plus{
-    vertical-align: text-top;
-    text-align: center;
-    line-height: 30px !important;
-}
-
-.fa-folder{
-    vertical-align: text-top;
-    text-align: center;
-    line-height: 30px !important;
+    filter:alpha(opacity= 50);
+    opacity: .5
 }
 
 #playButton{
     display: inline-block;
     position: absolute;
     font-size: 32px;
-    top: 12px;
-    left: 65px;
-    width: 48px;
-    height: 48px;
-    border-radius: 100%;
-    background: #1C1C1E;
-    text-align: center;
-    vertical-align: bottom;
+    top: 10px;
+    left: 165px;
 }
 
 #stopButton{
     display: inline-block;
     position: absolute;
     font-size: 32px;
-    top: 12px;
-    left: 120px;
-    width: 48px;
-    height: 48px;
-    border-radius: 100%;
-    background: #1C1C1E;
-    text-align: center;
-    vertical-align: bottom;
+    top: 10px;
+    left: 210px;
 }
 
 #playButton:hover{
     display: inline-block;
     position: absolute;
     font-size: 32px;
-    top: 12px;
-    left: 65px;
+    top: 10px;
+    left: 165px;
     cursor:pointer;
     filter:alpha(opacity= 50);
     opacity: .5
@@ -364,8 +257,8 @@ a{
     display: inline-block;
     position: absolute;
     font-size: 32px;
-    top: 12px;
-    left: 120px;
+    top: 10px;
+    left: 210px;
     cursor:pointer;
     filter:alpha(opacity= 50);
     opacity: .5
@@ -375,36 +268,24 @@ a{
     display: inline-block;
     position: absolute;
     font-size: 32px;
-    top: 12px;
-    left: 180px;
-    width: 48px;
-    height: 48px;
-    border-radius: 100%;
-    background: #1C1C1E;
-    text-align: center;
-    vertical-align: bottom;
+    top: 10px;
+    left: 260px;
 }
 
 #skipBackwardButton{
     display: inline-block;
     position: absolute;
     font-size: 32px;
-    top: 12px;
-    left: 10px;
-    width: 48px;
-    height: 48px;
-    border-radius: 100%;
-    background: #1C1C1E;
-    text-align: center;
-    vertical-align: bottom;
+    top: 10px;
+    left: 120px;
 }
 
 #skipForwardButton:hover{
     display: inline-block;
     position: absolute;
     font-size: 32px;
-    top: 12px;
-    left: 180px;
+    top: 10px;
+    left: 260px;
     cursor:pointer;
     filter:alpha(opacity= 50);
     opacity: .5
@@ -414,8 +295,8 @@ a{
     display: inline-block;
     position: absolute;
     font-size: 32px;
-    top: 12px;
-    left: 10px;
+    top: 10px;
+    left: 120px;
     cursor:pointer;
     filter:alpha(opacity= 50);
     opacity: .5
@@ -425,22 +306,16 @@ a{
     display: inline-block;
     position: absolute;
     font-size: 32px;
-    top: 12px;
-    left: 0px;
-    width: 48px;
-    height: 48px;
-    border-radius: 100%;
-    background: #1C1C1E;
-    text-align: center;
-    vertical-align: bottom;
+    top: 10px;
+    left: 900px;
 }
 
 #repeatButton:hover{
     display: inline-block;
     position: absolute;
     font-size: 32px;
-    top: 12px;
-    left: 0px;
+    top: 10px;
+    left: 900px;
     cursor:pointer;
     filter:alpha(opacity= 50);
     opacity: .5
@@ -450,22 +325,16 @@ a{
     display: inline-block;
     position: absolute;
     font-size: 32px;
-    top: 12px;
-    left: 55px;
-    width: 48px;
-    height: 48px;
-    border-radius: 100%;
-    background: #1C1C1E;
-    text-align: center;
-    vertical-align: bottom;
+    top: 10px;
+    left: 940px;
 }
 
 #volumeButton:hover{
     display: inline-block;
     position: absolute;
     font-size: 32px;
-    top: 12px;
-    left: 55px;
+    top: 10px;
+    left: 940px;
     cursor:pointer;
     filter:alpha(opacity= 50);
     opacity: .5
@@ -475,22 +344,16 @@ a{
     display: inline-block;
     position: absolute;
     font-size: 32px;
-    top: 12px;
-    left: 110px;
-    width: 48px;
-    height: 48px;
-    border-radius: 100%;
-    background: #1C1C1E;
-    text-align: center;
-    vertical-align: bottom;
+    top: 10px;
+    left: 980px;
 }
 
 #shuffleButton:hover{
     display: inline-block;
     position: absolute;
     font-size: 32px;
-    top: 12px;
-    left: 110px;
+    top: 10px;
+    left: 980px;
     cursor:pointer;
     filter:alpha(opacity= 50);
     opacity: .5
@@ -521,9 +384,9 @@ a{
     display: inline-block;
     position: absolute;
     width: 500px;
-    height: 5px;
+    height: 20px;
     top: 42px;
-    left: -150px;
+    left: 390px;
     background: rgba(255,255,255,.3);
     cursor:pointer;
 }
@@ -531,8 +394,8 @@ a{
 #playhead{
 	display: inline-block;
 	width: 10px;
-	height: 8px;
-	margin-bottom: 15px;
+	height: 20px;
+	margin-bottom: 4px;
 	background: rgb(52, 73, 94);
     cursor:pointer;
 }
@@ -540,8 +403,8 @@ a{
 #playhead:hover, #playhead:active{
 	display: inline-block;
 	width: 10px;
-	height: 15px;
-	margin-bottom: 15px;
+	height: 20px;
+	margin-bottom: 4px;
 	background: rgb(32, 53, 74);
     cursor:pointer;
 }
@@ -551,8 +414,8 @@ a{
     position: absolute;
     width: 170px;
     height: 30px;
-    bottom: -30px;
-    left: -10px;
+    top: -30px;
+    left: 840px;
     z-index: 4;
     background: #15141B;
 }
@@ -601,11 +464,9 @@ a{
 
 .index{
     width: 100%;
-    left: 200px;
-    top: 115px;
+    left: 260px;
     position: absolute;
     max-height: 100%;
-    max-width: 100%;
     z-index: 1;
     padding-bottom: 120px;
     overflow: overlay;
@@ -617,8 +478,8 @@ p#timeAllotted{
     line-height: 1.72222;
     display: inline-block;
     position: absolute;
-    top: 35px;
-    left: -235px;
+    top: 25px;
+    left: 300px;
 }
 
 #audio_file, #directory_input{
@@ -628,22 +489,16 @@ p#timeAllotted{
 #file_input_label{
     position: absolute;
     bottom: 80px;
-    left: 10px;
+    left: 190px;
     display: inline-block;
     font-size: 24px;
     cursor: pointer;
-    background: #232323;
-    border-radius: 15%;
-    height: 32px;
-    width: 32px;
-    text-align: center;
-    vertical-align: bottom;
 }
 
 #file_input_label:hover{
     position: absolute;
     bottom: 80px;
-    left: 10px;
+    left: 190px;
     display: inline-block;
     font-size: 24px;
     filter:alpha(opacity= 50);
@@ -654,22 +509,16 @@ p#timeAllotted{
 #directory_input_label{
     position: absolute;
     bottom: 80px;
-    left: 45px;
+    left: 220px;
     display: inline-block;
     font-size: 24px;
     cursor: pointer;
-    background: #232323;
-    border-radius: 15%;
-    height: 32px;
-    width: 32px;
-    text-align: center;
-    vertical-align: bottom;
 }
 
 #directory_input_label:hover{
     position: absolute;
     bottom: 80px;
-    left: 45px;
+    left: 220px;
     display: inline-block;
     font-size: 24px;
     filter:alpha(opacity= 50);
@@ -714,7 +563,7 @@ p#timeAllotted{
     position:absolute;
     width:500px;
     height:24px;
-    left: -150px;
+    left: 390px;
     top: 12px;
 }
 

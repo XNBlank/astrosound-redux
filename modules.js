@@ -12,6 +12,10 @@
             document.getElementById('page_playlists').style.display = "none";
             document.getElementById('page_settings').style.display = "none";
             document.getElementById('page_about').style.display = "none";
+            document.getElementById('music_link_a').className = "drawer-link-selected";
+            document.getElementById('playlist_link_a').className = "drawer-link";
+            document.getElementById('settings_link_a').className = "drawer-link";
+            document.getElementById('about_link_a').className = "drawer-link";
         });
 
         document.getElementById('about_link').addEventListener("click", function (e) {
@@ -19,6 +23,10 @@
             document.getElementById('page_settings').style.display = "none";
             document.getElementById('page_playlists').style.display = "none";
             document.getElementById('page_about').style.display = "inherit";
+            document.getElementById('music_link_a').className = "drawer-link";
+            document.getElementById('playlist_link_a').className = "drawer-link";
+            document.getElementById('settings_link_a').className = "drawer-link";
+            document.getElementById('about_link_a').className = "drawer-link-selected";
         });
 
         document.getElementById('playlist_link').addEventListener("click", function (e) {
@@ -26,6 +34,10 @@
             document.getElementById('page_settings').style.display = "none";
             document.getElementById('page_playlists').style.display = "inherit";
             document.getElementById('page_about').style.display = "none";
+            document.getElementById('music_link_a').className = "drawer-link";
+            document.getElementById('playlist_link_a').className = "drawer-link-selected";
+            document.getElementById('settings_link_a').className = "drawer-link";
+            document.getElementById('about_link_a').className = "drawer-link";
         });
 
         document.getElementById('settings_link').addEventListener("click", function (e) {
@@ -33,6 +45,10 @@
             document.getElementById('page_settings').style.display = "inherit";
             document.getElementById('page_playlists').style.display = "none";
             document.getElementById('page_about').style.display = "none";
+            document.getElementById('music_link_a').className = "drawer-link";
+            document.getElementById('playlist_link_a').className = "drawer-link";
+            document.getElementById('settings_link_a').className = "drawer-link-selected";
+            document.getElementById('about_link_a').className = "drawer-link";
         });
 
 

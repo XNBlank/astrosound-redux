@@ -12,11 +12,11 @@ app.on('window-all-closed', function() {
 
 app.on('ready', function() {
   mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 720,
+    width: 1500,
+    height: 850,
     frame: false,
-    'min-width': 1035,
-    'min-height': 500,
+    'min-width': 1200,
+    'min-height': 310,
     'accept-first-mouse': true,
     'title-bar-style': 'hidden'
   });

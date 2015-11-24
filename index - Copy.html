@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <title>AstroSound</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -15,35 +15,37 @@
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
-    <script src="js/vendor/html5shiv.js"></script>
-    <script src="js/vendor/respond.min.js"></script>
+      <script src="js/vendor/html5shiv.js"></script>
+      <script src="js/vendor/respond.min.js"></script>
     <![endif]-->
     <script src="./js/vendor/jquery.min.js"></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="title">AstroSound</div>
-        <div class="title-bar" style="-webkit-app-region: drag">
-            <div id="close">Close</div>
-            <div id="maximize">Maximize</div>
-            <div id="minimize">Minimize</div>
+      <div class="title">AstroSound</div>
+      <div class="title-bar" style="-webkit-app-region: drag">
+          <div id="close">Close</div>
+          <div id="maximize">Maximize</div>
+          <div id="minimize">Minimize</div>
+      </div>
+        <div class="drawer">
+          <div class="menuclear"></div>
+          <li id="music_link"><a><span class="fa fa-fw fa-music"></span>Music</a></li>
+          <li id="playlist_link"><a><span class="fa fa-fw fa-list"></span>Playlists</a></li>
+          <li id="settings_link"><a><span class="fa fa-fw fa-cog"></span>Settings</a></li>
+          <li id="about_link"><a><span class="fa fa-fw fa-info"></span>About</a></li>
+
+          <input type="file" id="directory_input" webkitdirectory="" directory=""><label for="directory_input" id="directory_input_label" class="fa fa-fw fa-folder" title="Add Directory"></label>
+          <input id="audio_file" type="file" accept="audio/*" /><label for="audio_file" id="file_input_label" class="fa fa-fw fa-plus" title="Add File"></label>
         </div>
-
-
-        <div class="controls">
+        <div class="playbar">
+            <div id="albumart"></div>
             <div id="playButton" class="pause"><span class="fa fa-play"></div>
             <div id="stopButton"><span class="fa fa-pause"></div>
             <div id="skipForwardButton"><i class="fa fa-forward"></i></div>
             <div id="skipBackwardButton"><i class="fa fa-backward"></i></div>
-        </div>
 
-
-        <div class="playbar"></div>
-
-        <div class="playbar_middle">
-            <div id="albumart"></div>
-
-            <div id="scrollwrapper">
+            <div id="scrollwrapper" style="">
                 <div style="width:5000px;">
                     <span id="scrollcontent" style="position:absolute; left:500px;">
                         <span id="firstcontent" style="float:left; text-align:left;">
@@ -57,9 +59,7 @@
             <div id="timeline">
                 <div id="playhead"></div>
             </div>
-        </div>
 
-        <div class="controls_2">
             <div id="repeatButton"><span class="fa fa-fw fa-repeat"><input name="repeat" id="repeatCheck" type="checkbox"></div>
             <div id="volumeButton"><span class="fa fa-fw fa-volume-up"></div>
                 <div id="volumeBacking">
@@ -71,19 +71,8 @@
                     </div>
                 </div>
             <div id="shuffleButton"><span class="fa fa-fw fa-random"><input name="shuffle" id="shuffleCheck" type="checkbox"></div>
+
         </div>
-
-        <div class="drawer">
-            <div class="menuclear"></div>
-            <li id="music_link"><a id="music_link_a" class="drawer-link drawer-link-selected"><span class="fa fa-fw fa-music"></span>Music</a></li>
-            <li id="playlist_link"><a id="playlist_link_a" class="drawer-link"><span class="drawer-link fa fa-fw fa-list"></span>Playlists</a></li>
-            <li id="settings_link"><a id="settings_link_a" class="drawer-link"><span class="drawer-link fa fa-fw fa-cog"></span>Settings</a></li>
-            <li id="about_link"><a id="about_link_a" class="drawer-link"><span class="drawer-link fa fa-fw fa-info"></span>About</a></li>
-
-            <input type="file" id="directory_input" webkitdirectory="" directory=""><label for="directory_input" id="directory_input_label" class="fa fa-fw fa-folder" title="Add Directory"></label>
-            <input id="audio_file" type="file" accept="audio/*" /><label for="audio_file" id="file_input_label" class="fa fa-fw fa-plus" title="Add File"></label>
-        </div>
-
 
         <div class="index" id="page_music">
             <div id="result"></div>
@@ -110,10 +99,9 @@
             <li><a onclick="require('shell').openExternal('https://github.com/XNBlank/AstroSound/issues/new')"><span class="fa fa-bug">&nbsp;Report a Bug</a></li>
         </div>
         <audio id="audio_player" /></audio>
-
-
     </div>
 
+    <!-- /.container -->
     <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
     <script src="./js/vendor/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -121,4 +109,7 @@
     <script src="./modules.js"></script>
     <script src="./js/vendor/video.js"></script>
     <script src="./js/flat-ui.min.js"></script>
-</body>
+
+
+  </body>
+</html>

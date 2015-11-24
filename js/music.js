@@ -34,6 +34,13 @@
         return string.slice(0, prefix.length) == prefix;
     }
 
+    var scrollEventHandler = function()
+    {
+        window.scroll(0, 0)
+    }
+
+    window.addEventListener("scroll", scrollEventHandler, false);
+
     //Audio Management
 
     //Marquee
@@ -215,7 +222,7 @@
                 _output[i] = dirList[i].split("\/").pop();
                 _outputDir[i] = dirList[i].split("\\").join("\\\\");
                 //This is super messy and needs an alternative. For now, this is working.
-                output += "<li class='song'><a href='#' id='sNo" + i + "' onclick='curSongPlay = 0; curSongPlay = curSongPlay + " + i + "; console.log(curSongPlay); var player = document.getElementById(\"audio_player\"); player.src = \"" + _outputDir[i] + "\"; player.currentTime = 0; player.play(); \ var x = document.getElementsByClassName(\"songTitle\"); for (var i = 0; i < x.length; i++){ x[i].innerHTML = \"" + _output[i] + "\";}'>" + _output[i] + "</li>";
+                output += "<li class=\'song\'><a href=\'#\' class=\'sLTitle\' id=\'sNo" + i + "\' onclick=\'curSongPlay = 0; curSongPlay = " + i + "; console.log(curSongPlay); var player = document.getElementById(\"audio_player\"); player.src = \"" + _outputDir[i] + "\"; player.currentTime = 0; player.play(); var x = document.getElementsByClassName(\"songTitle\"); for (var i = 0; i < x.length; i++){ x[i].innerHTML = \"" + _output[i] + "\";}\'>" + _output[i] + "</li>";
             }
             //Add to the music page.
             document.getElementById("result").innerHTML += output;
@@ -406,7 +413,7 @@
 
 
     function moveplayhead(e) {
-      var newMargLeft = e.pageX - timeline.offsetLeft;
+      var newMargLeft = (e.pageX - 200) - timeline.offsetLeft-150;
       if (newMargLeft >= 0 && newMargLeft <= timelineWidth) {
         playhead.style.marginLeft = newMargLeft + "px";
       }
