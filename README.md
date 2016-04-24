@@ -1,21 +1,12 @@
-# AstroSound
-## A modern music player made with Electron
-![](http://i.imgur.com/z1drjyG.png)
+# AstroSound Redux
+## AstroSound is getting an overhaul!
 
-**What is AstroSound?**
+**What is AstroSound REDUX?**
 
-AstroSound is a music player application created with electron, and utilizes a simple modern design that's easy to use and easy to love.
+AstroSound is my dream music player. It's something that I want to be easy to use, stylish and appealing to the eye, and fully functional. AstroSound REDUX is based around Google's Material Design.  
 
-![AstroSound](http://i.imgur.com/tELbiDO.png)
-__(Screenshot is of an early build. Still a work in progress.)__
+![AstroSound](http://i.imgur.com/zwFdeif.png)
 
-**What audio types are supported?**
 
-These are the currently known supported audio types:
-
-- MP3
-- M4A
-- WAV (16 and 32 bit)
-- OGG
 
 
