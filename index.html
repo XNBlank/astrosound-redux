@@ -1,124 +1,176 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>AstroSound</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>AstroSound v1.1</title>
 
-    <!-- Loading Bootstrap -->
-    <link href="./css/vendor/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Loading Flat UI -->
-    <link href="./css/flat-ui.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/theme.css" rel="stylesheet">
-    <link rel="stylesheet" href="./css/font-awesome.min.css" rel="stylesheet">
-    <link rel="shortcut icon" href="img/favicon.ico">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
-    <!--[if lt IE 9]>
-    <script src="js/vendor/html5shiv.js"></script>
-    <script src="js/vendor/respond.min.js"></script>
-    <![endif]-->
-    <script src="./js/vendor/jquery.min.js"></script>
-</head>
-<body>
-    <div class="container">
-        <div class="title">AstroSound</div>
-        <div class="title-bar" style="-webkit-app-region: drag">
-            <div id="close">Close</div>
-            <div id="maximize">Maximize</div>
-            <div id="minimize">Minimize</div>
-        </div>
-
-
-        <div class="controls">
-            <div id="playButton" class="pause"><span class="fa fa-play"></div>
-            <div id="stopButton"><span class="fa fa-pause"></div>
-            <div id="skipForwardButton"><i class="fa fa-forward"></i></div>
-            <div id="skipBackwardButton"><i class="fa fa-backward"></i></div>
-        </div>
-
-
-        <div class="playbar"></div>
-
-        <div class="playbar_middle">
-            <div id="albumart"></div>
-
-            <div id="scrollwrapper">
-                <div style="width:5000px;">
-                    <span id="scrollcontent" style="position:absolute; left:500px;">
-                        <span id="firstcontent" style="float:left; text-align:left;">
-                            <p class="songTitle"></p>
-                        </span>
-                    </span>
-                </div>
-            </div>
-
-            <p id="timeAllotted">00:00:00</p>
-            <div id="timeline">
-                <div id="playhead"></div>
-            </div>
-        </div>
-
-        <div class="controls_2">
-            <div id="repeatButton"><span class="fa fa-fw fa-repeat"><input name="repeat" id="repeatCheck" type="checkbox"></div>
-            <div id="volumeButton"><span class="fa fa-fw fa-volume-up"></div>
-                <div id="volumeBacking">
-                    <div id="volumeSlider">
-                        <div id="volumeHead">
-                            <p id="volumePercent">100%</p>
-                            <input name="volume" id="volumeCheck" type="checkbox">
-                        </div>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.deep_orange-red.min.css">
+        <link rel="stylesheet" href="./css/style.css" media="screen" title="no title" charset="utf-8">
+        <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    </head>
+    <body>
+        <div class="drag-region"></div>
+        <div class="title-bar mdl-layout mdl-js-layout mdl-layout--fixed-header">
+          <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title" id="title">Library</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+                <!-- Navigation -->
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+                    <label class="mdl-button mdl-js-button mdl-button--icon" for="waterfall-exp">
+                    <i class="material-icons">search</i>
+                    </label>
+                    <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input" type="text" name="sample" id="waterfall-exp">
                     </div>
                 </div>
-            <div id="shuffleButton"><span class="fa fa-fw fa-random"><input name="shuffle" id="shuffleCheck" type="checkbox"></div>
+
+                        <!-- Right aligned menu below button -->
+                <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">more_vert</i>
+                </button>
+
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+                    <input id="audio_file" type="file" accept="audio/*" /><label for="audio_file" id="file_input_label" class="mdl-menu__item">Add Song</label>
+                    <input id="add_directory" type="file" webkitdirectory="" directory="" /><label for="add_directory" id="directory_input_label" class="mdl-menu__item">Add Directory</label>
+                </ul>
+
+                <button id="minimize" class="title-bar-btn mdl-button"><i class="material-icons">remove</i></button>
+                <button id="maximize" class="title-bar-btn mdl-button"><i class="material-icons">web_asset</i></button>
+                <button id="close" class="title-bar-btn mdl-button"><i class="material-icons">close</i></button>
+            </div>
+          </header>
+          <!-- Drawer -->
+          <div class="mdl-layout__drawer" id="drawer">
+            <span class="mdl-layout-title">AstroSound Redux</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="#" id="playingLink"><i class="material-icons">library_music</i> Now Playing</a>
+                <a class="mdl-navigation__link" href="#" id="libraryLink"><i class="material-icons">library_music</i> Library</a>
+                <a class="mdl-navigation__link" href="#" id="playlistsLink"><i class="material-icons">playlist_play</i> Playlists</a>
+                <a class="mdl-navigation__link" href="#" id="faveLink"><i class="material-icons">favorite</i> Favourites</a>
+                <a class="mdl-navigation__link" href="#" id="settingsLink"><i class="material-icons">settings</i> Settings</a>
+                <a class="mdl-navigation__link" target="_blank" href="https://github.com/XNBlank/AstroSound/issues"><i class="material-icons">bug_report</i> Report a Bug</a>
+                <a class="mdl-navigation__link" href="#" id="exitLink"><i class="material-icons">exit_to_app</i> Exit</a>
+            </nav>
+          </div>
+
+          <main class="mdl-layout__content">
+              <div class="page-content">
+
+                  <div id="loading-screen">
+                      <div class="loader mdl-spinner mdl-js-spinner is-active"></div><p>Give us a moment to setup.</p>
+                  </div>
+
+                  <div id="nowplaying">
+                      <div class="album_art"></div>
+                      <p>Song Title</p>
+                      <p>Album</p>
+                      <p>Artist</p>
+                  </div>
+
+                  <div id="library">
+                    <table class="mdl-data-table mdl-js-data-table">
+                      <thead>
+                        <tr>
+                          <th class="mdl-data-table__cell--non-numeric">Song Title</th>
+                          <th class="mdl-data-table__cell--non-numeric">Artist</th>
+                          <th class="mdl-data-table__cell--non-numeric">Album</th>
+                          <th>Time</th>
+                          <th class="mdl-data-table__cell--non-numeric">Fave</th>
+                          <th class="mdl-data-table__cell--non-numeric">Add to Playlist</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="mdl-data-table__cell--non-numeric">Song #1</td>
+                          <td class="mdl-data-table__cell--non-numeric">Artist #1</td>
+                          <td class="mdl-data-table__cell--non-numeric">Album #1</td>
+                          <td>5:00</td>
+                          <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons">favorite</i></button></td>
+                          <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons">playlist_add</i></button></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div id="playlists">
+                      <div class="content">
+                          <p>Some sort of playlists will go here.</p>
+                      </div>
+                  </div>
+
+                  <div id="favorites">
+                      <div class="content">
+                          <p>Some sort of favorites will go here.</p>
+                      </div>
+                  </div>
+
+                <div id="settings">
+                    <div class="content">
+                        <p>Some sort of settings will go here.</p>
+                    </div>
+                </div>
+
+              </div>
+          </main>
+
+          <footer class="mdl-mini-footer">
+            <div class="mdl-mini-footer__left-section">
+                <button id="last_song" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">fast_rewind</i>
+                </button>
+                <button id="play_button" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">play_arrow</i>
+                </button>
+                <button id="stop_button" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">stop</i>
+                </button>
+                <button id="next_song" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">fast_forward</i>
+                </button>
+            </div>
+            <div class="mdl-mini-footer__middle-section">
+                <div class="playbar">
+                    <p style="width:100%">
+                      <input class="mdl-slider mdl-js-slider" type="range" id="playback" min="0" max="100" value="0" step="1">
+                    </p>
+                </div>
+                <audio id="audio_player" /></audio>
+            </div>
+            <div class="mdl-mini-footer__right-section">
+
+                <div id="volumebar">
+                    <p style="width:150px">
+                      <input class="mdl-slider mdl-js-slider" type="range" id="volume" min="0" max="100" value="100" step="1">
+                    </p>
+                </div>
+
+                <button id="volume_button" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">volume_up</i>
+                </button>
+                <button id="shuffle_button" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">shuffle</i>
+                </button>
+                <button id="repeat_button" class="mdl-button mdl-js-button mdl-button--icon">
+                    <i class="material-icons">repeat</i>
+                </button>
+            </div>
+          </footer>
         </div>
 
-        <div class="drawer">
-            <div class="menuclear"></div>
-            <li id="music_link"><a id="music_link_a" class="drawer-link drawer-link-selected"><span class="fa fa-fw fa-music"></span>Music</a></li>
-            <li id="playlist_link"><a id="playlist_link_a" class="drawer-link"><span class="drawer-link fa fa-fw fa-list"></span>Playlists</a></li>
-            <li id="settings_link"><a id="settings_link_a" class="drawer-link"><span class="drawer-link fa fa-fw fa-cog"></span>Settings</a></li>
-            <li id="about_link"><a id="about_link_a" class="drawer-link"><span class="drawer-link fa fa-fw fa-info"></span>About</a></li>
 
-            <input type="file" id="directory_input" webkitdirectory="" directory=""><label for="directory_input" id="directory_input_label" class="fa fa-fw fa-folder" title="Add Directory"></label>
-            <input id="audio_file" type="file" accept="audio/*" /><label for="audio_file" id="file_input_label" class="fa fa-fw fa-plus" title="Add File"></label>
-        </div>
-
-
-        <div class="index" id="page_music">
-            <div id="result"></div>
-
-        </div>
-
-        <div class="index" id="page_playlists">
-            <p>Playlists not available yet.</p>
-
-        </div>
-
-        <div class="index" id="page_settings">
-            <p class="description">Directories : </p><input class="inputbox" type="text" name="savedDirs" id="savedDirs"> <button type="button" name="reload" class="inputbutton" id="settingsReload">Save/Reload</button>
-
-        </div>
-
-        <div class="index" id="page_about">
-            <li><a>AstroSound v0.0-5</a></li>
-            <li><a>Created by XNBlank</a></li>
-            <li>&nbsp;</li>
-            <li><a onclick="require('shell').openExternal('https://github.com/XNBlank/AstroSound')"><span class="fa fa-github-alt">&nbsp;Github Page</a></li>
-            <li><a onclick="require('shell').openExternal('http://xnblank.net')"><span class="fa fa-globe">&nbsp;Author's Website</a></li>
-            <li>&nbsp;</li>
-            <li><a onclick="require('shell').openExternal('https://github.com/XNBlank/AstroSound/issues/new')"><span class="fa fa-bug">&nbsp;Report a Bug</a></li>
-        </div>
-        <audio id="audio_player" /></audio>
-
-
-    </div>
-
-    <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
-    <script src="./js/vendor/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="./js/music.js"></script>
-    <script src="./modules.js"></script>
-    <script src="./js/vendor/video.js"></script>
-    <script src="./js/flat-ui.min.js"></script>
-</body>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script>
+            try {
+            $ = jQuery = module.exports;
+            // If you want module.exports to be empty, uncomment:
+            // module.exports = {};
+            } catch(e) {}
+        </script>
+        <script src="./js/music.js"></script>
+        <script src="./modules.js"></script>
+    </body>
+</html>

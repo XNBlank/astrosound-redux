@@ -1,5 +1,9 @@
 {
-  "name"    : "astrosound",
-  "version" : "0.0.5",
-  "main"    : "main.js"
+  "name": "astrosound",
+  "version": "0.0.5",
+  "main": "main.js",
+  "dependencies": {
+    "jsmediatags": "^3.0.5",
+    "open": "0.0.5"
+  }
 }
