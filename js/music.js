@@ -15,7 +15,7 @@
     var savePath = path_.join(home + "/.astrosound", "settings");
 
     var music = document.getElementById('audio_player');
-    var paused = false;
+    var paused;
     var repeat = false;
     var shuffle = false;
     var volumeHidden = true;
@@ -90,7 +90,10 @@ Was used to grab album art from ID3. Was too slow and failed to work 80% of the 
 
 
 //Gets Song info and Album Art
-    function getID3(file){
+    function getID3(file, cb){
+
+        var metadata;
+
         jsmediatags.read(file, {
           onSuccess: function(tag) {
             console.log(tag);
@@ -98,29 +101,31 @@ Was used to grab album art from ID3. Was too slow and failed to work 80% of the 
             var album = tag.tags.album;
             var artist = tag.tags.artist;
             var artArr = tag.tags.picture;
-            var metadata = [title,album,artist];
+            metadata = [title,album,artist];
 
             console.log(metadata);
+            cb(metadata);
             //var stackSize = computeMaxCallStackSize();
 
             //console.log(stackSize);
 
             //alert("Got a song! " + "\n" + metadata[0] + "\n" + metadata[1] + "\n" + metadata[2]);
-            searchSpotify(title,artist,album);
+            //searchSpotify(title,artist,album);
 
-            $(".info-bar").text(title + " : " + artist + " - " + album);
+            $(".info-bar").html("<p>"+title + "<br>" + artist + " - " + album+"</p>");
 
 
-            //return metadata;
           },
           onError: function(error) {
             console.log(':(', error.type, error.info);
+            return error.info;
           }
         });
+
     }
 
 
-function searchSpotify(track, artist, album){
+function searchSpotify(title, artist, album){
     var artlink;
     var data;
 
@@ -163,7 +168,7 @@ function searchSpotify(track, artist, album){
             });
             console.log(songInfo);
             songList.push(songInfo);
-            db.push(songList);
+            //db.push(songList);
         }, 1);
 
     }catch(e){
@@ -266,17 +271,23 @@ $(function () {
             var _name = files[0].name;
             var __dir = files[0].path;
             try{
-                var songID3 = getID3(files[0]);
+                getID3(files[0], function(songID3){
+                    console.log(songID3);
+                    searchSpotify(songID3[0],songID3[2],songID3[1]);
+                });
             }catch(e){
                 console.log(e);
             }
+
+
 
 
             var _dir = __dir.split("\\" + _name);
             console.log(_name);
             console.log(_dir[0]);
             file = URL.createObjectURL(files[0]);
-
+            paused = false;
+            console.log(paused);
             audio_player.src = file;
             audio_player.currentTime = 0;
             audio_player.play();
@@ -350,11 +361,25 @@ $(function () {
                 if(timeLeft <= 1){
                     audio_player.currentTime = 0;
                 }
+            } else {
+                if(timeLeft <= 1){
+                    paused = true;
+                }
+
             }
 
             //console.log(audio_player.duration);
             //console.log(audio_player.currentTime);
             //console.log(curTime);
+        }
+
+
+        if(paused == false){
+            document.getElementById("play_button").className = "mdl-button mdl-js-button mdl-button--icon mdl-button--colored";
+            document.getElementById("stop_button").className = "mdl-button mdl-js-button mdl-button--icon";
+        }else{
+            document.getElementById("stop_button").className = "mdl-button mdl-js-button mdl-button--icon mdl-button--colored";
+            document.getElementById("play_button").className = "mdl-button mdl-js-button mdl-button--icon";
         }
     }
 
@@ -362,8 +387,10 @@ $(function () {
 //Controls
 //--------
 
+
 document.getElementById("play_button").addEventListener("click", function(e) {
     audio_player.play();
+    paused = false;
     document.getElementById("play_button").className = "mdl-button mdl-js-button mdl-button--icon mdl-button--colored";
     document.getElementById("stop_button").className = "mdl-button mdl-js-button mdl-button--icon";
     console.log("Play is pressed");
@@ -372,6 +399,7 @@ document.getElementById("play_button").addEventListener("click", function(e) {
 document.getElementById("stop_button").addEventListener("click", function(e) {
     audio_player.pause();
     audio_player.currentTime = 0;
+    paused = true;
     document.getElementById("stop_button").className = "mdl-button mdl-js-button mdl-button--icon mdl-button--colored";
     document.getElementById("play_button").className = "mdl-button mdl-js-button mdl-button--icon";
     console.log("Stop is pressed");

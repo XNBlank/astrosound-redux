@@ -125,6 +125,8 @@
         };
 
         $(function(){
+            $("#col-orange").prop('checked', true);
+
             $("#col-orange").on("click", function(){
                 $("#colorScheme").attr("href", "./css/material.deep_orange-red.min.css");
                 UIColor = "orange";
@@ -244,21 +246,27 @@
             switch (UIColor) {
                 case "orange":
                     $("#colorScheme").attr("href", "./css/material.deep_orange-red.min.css");
+                    $("#col-orange").prop('checked', true);
                 break;
                 case "red":
                     $("#colorScheme").attr("href", "./css/material.red-deep_orange.min.css");
+                    $("#col-red").prop('checked', true);
                 break;
                 case "blue":
                     $("#colorScheme").attr("href", "./css/material.blue-light_blue.min.css");
+                    $("#col-blue").prop('checked', true);
                 break;
                 case "purple":
                     $("#colorScheme").attr("href", "./css/material.deep_purple-purple.min.css");
+                    $("#col-purple").prop('checked', true);
                 break;
                 case "green":
                     $("#colorScheme").attr("href", "./css/material.green-light_green.min.css");
+                    $("#col-green").prop('checked', true);
                 break;
                 case "dark":
                     $("#colorScheme").attr("href", "./css/material.dark-blue.css");
+                    $("#col-dark").prop('checked', true);
                 break;
             }
 

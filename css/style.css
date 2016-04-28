@@ -22,6 +22,18 @@
 
 body{
     display:none;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* Internet Explorer/Edge */
+    user-select: none;           /* Non-prefixed version, currently*/
+}
+
+h3{
+    margin: 4px 0 12px;
+    font-size: 20px;
+    line-height: 0;
 }
 
 .mdl-layout__header-row{
@@ -35,6 +47,12 @@ body{
     width: 95%;
     top: 5px;
     left: 2%;
+}
+
+.radio-btn{
+    width: 49%;
+    display: inline-block;
+    padding: 5px 0;
 }
 
 .title-bar-btn{
@@ -107,6 +125,19 @@ body{
     width: 100%;
 }
 
+.information{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 60%;
+}
+
+.section{
+    position: absolute;
+    left: 10%;
+    width: 120%;
+}
+
 #loading-screen{
     height: 300px;
     width: 100%;
@@ -171,14 +202,17 @@ body{
     word-wrap: normal;
     font-weight: bold;
     font-size: 16px;
-    width: 86%;
-    height: 25px;
+    width: 60%;
     text-align: center;
     /*background: #000;*/
     margin-top: 18px;
-    margin-bottom: -7px;
     display: inline-block;
     line-height: 23px;
+}
+
+.info-bar p{
+    margin: -14px 0;
+    font-weight: bold;
 }
 
 #library .mdl-data-table{
