@@ -5,7 +5,7 @@
         <title>AstroSound v1.1</title>
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.deep_orange-red.min.css">
+        <link rel="stylesheet" id="colorScheme" href="https://code.getmdl.io/1.1.3/material.deep_orange-red.min.css">
         <link rel="stylesheet" href="./css/style.css" media="screen" title="no title" charset="utf-8">
         <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
     </head>
@@ -47,7 +47,6 @@
           <div class="mdl-layout__drawer" id="drawer">
             <span class="mdl-layout-title">AstroSound Redux</span>
             <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="#" id="playingLink"><i class="material-icons">library_music</i> Now Playing</a>
                 <a class="mdl-navigation__link" href="#" id="libraryLink"><i class="material-icons">library_music</i> Library</a>
                 <a class="mdl-navigation__link" href="#" id="playlistsLink"><i class="material-icons">playlist_play</i> Playlists</a>
                 <a class="mdl-navigation__link" href="#" id="faveLink"><i class="material-icons">favorite</i> Favourites</a>
@@ -60,15 +59,13 @@
           <main class="mdl-layout__content">
               <div class="page-content">
 
+
+                  <!-- Modal -->
+
+
+
                   <div id="loading-screen">
                       <div class="loader mdl-spinner mdl-js-spinner is-active"></div><p>Give us a moment to setup.</p>
-                  </div>
-
-                  <div id="nowplaying">
-                      <div class="album_art"></div>
-                      <p>Song Title</p>
-                      <p>Album</p>
-                      <p>Artist</p>
                   </div>
 
                   <div id="library">
@@ -79,7 +76,7 @@
                           <th class="mdl-data-table__cell--non-numeric">Artist</th>
                           <th class="mdl-data-table__cell--non-numeric">Album</th>
                           <th>Time</th>
-                          <th class="mdl-data-table__cell--non-numeric">Fave</th>
+                          <th class="mdl-data-table__cell--non-numeric">Favorite</th>
                           <th class="mdl-data-table__cell--non-numeric">Add to Playlist</th>
                         </tr>
                       </thead>
@@ -110,14 +107,67 @@
 
                 <div id="settings">
                     <div class="content">
-                        <p>Some sort of settings will go here.</p>
+                        <div class="mdl-grid">
+                          <div class="mdl-cell mdl-cell--4-col">
+                              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="col-orange">
+                                <input type="radio" id="col-orange" class="mdl-radio__button" name="options" value="1" checked>
+                                <span class="mdl-radio__label">Orange</span>
+                              </label>
+                              <br>
+                              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="col-red">
+                                <input type="radio" id="col-red" class="mdl-radio__button" name="options" value="2">
+                                <span class="mdl-radio__label">Red</span>
+                              </label>
+                              <br>
+                              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="col-blue">
+                                <input type="radio" id="col-blue" class="mdl-radio__button" name="options" value="3">
+                                <span class="mdl-radio__label">Blue</span>
+                              </label>
+                              <br>
+                              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="col-purple">
+                                <input type="radio" id="col-purple" class="mdl-radio__button" name="options" value="4">
+                                <span class="mdl-radio__label">Purple</span>
+                              </label>
+                              <br>
+                              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="col-green">
+                                <input type="radio" id="col-green" class="mdl-radio__button" name="options" value="5">
+                                <span class="mdl-radio__label">Green</span>
+                              </label>
+                              <br>
+                              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="col-dark">
+                                <input type="radio" id="col-dark" class="mdl-radio__button" name="options" value="6">
+                                <span class="mdl-radio__label">Dark</span>
+                              </label>
+                          </div>
+                          <div class="mdl-cell mdl-cell--4-col"></div>
+                          <div class="mdl-cell mdl-cell--4-col"></div>
+                        </div>
                     </div>
                 </div>
 
               </div>
           </main>
 
+          <div id="album-art-full" class="modal" style="display:none;"></div>
+
+
+          <div class="mdl-mini-footer now-playing">
+            <div class="mdl-mini-footer__left-section">
+                <a href="#album-art-full" rel="modal:open"><div id="album-art"></div></a>
+            </div>
+            <div class="mdl-mini-footer__middle-section">
+                <div class="section">
+                    <div class="time-allott">00:00:00</div>
+                    <div class="info-bar">No song loaded.</div>
+                    <div class="time-left">00:00:00</div>
+                </div>
+
+            </div>
+
+          </div>
+
           <footer class="mdl-mini-footer">
+
             <div class="mdl-mini-footer__left-section">
                 <button id="last_song" class="mdl-button mdl-js-button mdl-button--icon">
                     <i class="material-icons">fast_rewind</i>
@@ -170,6 +220,7 @@
             // module.exports = {};
             } catch(e) {}
         </script>
+        <script src="./js/modal.js"></script>
         <script src="./js/music.js"></script>
         <script src="./modules.js"></script>
     </body>
