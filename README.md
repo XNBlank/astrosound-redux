@@ -10,4 +10,4 @@ AstroSound is my dream music player. It's something that I want to be easy to us
 The screenshot above is of a build that is currently still in development, and is not yet ready to be shipped. Design is subject to change.
 
 
-![AstroSound](http://i.imgur.com/ijJFwAo.gifv)
+![AstroSound](http://i.imgur.com/ijJFwAo.gif)
