@@ -1,7 +1,7 @@
 (function(){
     var fs = require('fs');
-    var remote = require('remote');
-    var BrowserWindow = remote.require('browser-window');
+    var remote = require('electron').remote.app;
+    var BrowserWindow = require('electron').remote.BrowserWindow;
     var window = BrowserWindow.getFocusedWindow();
     window.$ = window.jQuery = require('./js/vendor/jquery.min.js');
     var jsmediatags = require("jsmediatags");
@@ -47,6 +47,9 @@
                 return 1;
             }
         }
+
+
+        
 
 /*
 Was used to grab album art from ID3. Was too slow and failed to work 80% of the time. Possible to fix however.

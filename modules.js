@@ -1,8 +1,8 @@
 (function () {
         var fs = require('fs');
 
-        var remote = require('remote');
-        var BrowserWindow = remote.require('browser-window');
+        var remote = require('electron').remote.app;
+        var BrowserWindow = require('electron').remote.BrowserWindow;
         var window = BrowserWindow.getFocusedWindow();
         window.$ = window.jQuery = require('./js/vendor/jquery.min.js');
 
@@ -13,9 +13,6 @@
         var path_ = require("path");
         var home = getUserHome();
         var savePath = path_.join(home + "/.astrosound", "settings");
-
-        var JsonDB = require("node-json-db");
-        var db = new JsonDB("settings", true, false);
 
         var UIColor = "orange";
 
@@ -130,7 +127,6 @@
             $("#col-orange").on("click", function(){
                 $("#colorScheme").attr("href", "./css/material.deep_orange-red.min.css");
                 UIColor = "orange";
-                db.push("/settings",UIColor);
 
                 if(!fs.existsSync(savePath)){
                     console.log("Doesn't exist.");
@@ -149,7 +145,6 @@
             $("#col-red").on("click", function(){
                 $("#colorScheme").attr("href", "./css/material.red-deep_orange.min.css");
                 UIColor = "red";
-                db.push("/settings",UIColor);
 
                 if(!fs.existsSync(savePath)){
                     console.log("Doesn't exist.");
@@ -168,7 +163,6 @@
             $("#col-blue").on("click", function(){
                 $("#colorScheme").attr("href", "./css/material.blue-light_blue.min.css");
                 UIColor = "blue";
-                db.push("/settings",UIColor);
 
                 if(!fs.existsSync(savePath)){
                     console.log("Doesn't exist.");
@@ -187,7 +181,6 @@
             $("#col-purple").on("click", function(){
                 $("#colorScheme").attr("href", "./css/material.deep_purple-purple.min.css");
                 UIColor = "purple";
-                db.push("/settings",UIColor);
 
                 if(!fs.existsSync(savePath)){
                     console.log("Doesn't exist.");
@@ -206,7 +199,6 @@
             $("#col-green").on("click", function(){
                 $("#colorScheme").attr("href", "./css/material.green-light_green.min.css");
                 UIColor = "green";
-                db.push("/settings",UIColor);
 
                 if(!fs.existsSync(savePath)){
                     console.log("Doesn't exist.");
@@ -225,7 +217,6 @@
             $("#col-dark").on("click", function(){
                 $("#colorScheme").attr("href", "./css/material.dark-blue.css");
                 UIColor = "dark";
-                db.push("/settings",UIColor);
 
                 if(!fs.existsSync(savePath)){
                     console.log("Doesn't exist.");
@@ -240,8 +231,6 @@
                     });
                 }
             });
-
-            var UIColor = db.getData("/settings");
 
             switch (UIColor) {
                 case "orange":

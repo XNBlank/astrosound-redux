@@ -1,10 +1,11 @@
 "use strict";
 
-var app = require('app');
-var BrowserWindow = require('browser-window');
+var app = require('electron').app;
+var BrowserWindow = require('electron').BrowserWindow;
 var open = require('open');
+const path = require('path');
 
-var mainWindow = null;
+const mainWindow = null;
 
 app.on('window-all-closed', function() {
   if (process.platform != 'darwin')
@@ -12,17 +13,31 @@ app.on('window-all-closed', function() {
 });
 
 app.on('ready', function() {
-    mainWindow = new BrowserWindow({
+    let mainWindow = new BrowserWindow({
         width: 700,
         height: 600,
         frame: false,
-        'min-width': 670,
-        'min-height': 580,
-        'accept-first-mouse': true,
-        'title-bar-style': 'hidden'
+        minWidth: 670,
+        minHeight: 580,
+        acceptFirstMouse: true,
+        titleBarStyle: 'hidden',
+        icon: __dirname + '/app.png'
     });
 
-    mainWindow.loadUrl('file://' + __dirname + '/index.html');
+    mainWindow.setThumbarButtons([
+  {
+    tooltip: 'Play',
+    icon: path.join(__dirname, '/img/play.png'),
+    click() { document.getElementById("play_button").click(); }
+  },
+  {
+    tooltip: 'Stop',
+    icon: path.join(__dirname, '/img/stop.png'),
+    click() { document.getElementById("stop_button").click(); }
+  }
+]);
+
+    mainWindow.loadURL('file://' + __dirname + '/index.html');
 
     var webContents = mainWindow.webContents;
 
