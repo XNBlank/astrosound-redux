@@ -1,0 +1,448 @@
+/* 
+========================================================================
+--------------------TO MAKE RESPONSIVE----------------------------------
+------------------------------------------------------------------------ /
+
+------------------------------------------------------------------------ */
+
+
+
+@media screen and (min-width: 1200px) {
+  header .app li {
+    margin-left: 20px;
+  }
+  .app li .fa {
+    font-size: 36px;
+  } 
+   header .nav > li > a {
+     font-size: 19px;
+   } 
+}
+@media screen and (max-width: 1200px) { 
+  .description-list li {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 992px) {
+   .contact .nav-tabs li {
+      margin:0 5% 25px;
+   }
+   header .nav > li > a {
+     font-size: 14px;
+     padding: 5px 8px;
+   }
+   .description-list li {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+}
+@media screen and (max-width: 768px) { 
+  .nav-brand {
+    display: inline-block;
+  }
+  header .navbar-default .navbar-collapse {
+    border: none;
+  }
+  .mob-right {
+    position: absolute;
+    top: 5px;
+    right: 80px;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 26px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  .banner h2, .banner h3, .banner p {
+    margin-bottom: 45px;
+  } 
+  .banner-title {
+    font-size: 32px;
+  }
+  .feature-list-right {
+    margin: 25px 0 0;
+  }
+  .subscription h2 {
+     font-size: 18px;
+     margin-bottom: 20px;
+   }
+  .video span {
+    font-size: 26px;
+  }
+  .reviewer-name {
+    font-size: 18px;
+  }
+  .review-comp {
+    font-size: 14px;
+  }
+  .screenshot-block .caption .fa {
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px rgba(0, 167, 221, 0.8);
+    font-size: 30px;
+    height: 60px;
+    line-height: 66px;
+    width: 60px;
+  }
+  .downlaod .btn {
+      font-size: 22px;
+      padding: 8px 10px;
+   }
+  ul.description-list {
+  	margin: 20px 0;
+  }
+  .contact .nav-tabs li .fa {
+  	width: 40px;
+  	height: 40px;
+  	font-size: 20px;
+  }
+  section.contact > .container {
+    margin-top: -150px;
+  }
+  .social-icon {
+     margin-bottom: 40px;
+  }
+  .price-header {
+    padding: 10px;
+    height: 150px;
+  }
+  .price-header h3 {    
+    margin-bottom:28px;
+  }
+  .price-plan {
+    text-align: center;
+    font-size: 14px;
+  }
+  .price-plan ul li {
+    padding: 5px;
+  }
+  .subscription .form-control::-moz-placeholder {
+    font-size: 10px;
+  }
+  .subscription .form-control:-ms-input-placeholder {
+    font-size: 10px;
+  }
+  .subscription .form-control::-webkit-input-placeholder {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  header {
+    height: auto;
+    padding: 0;
+  }
+  header h1{
+   margin: 10px 0;
+  }
+  .mob-right {
+    top: 10px;
+  }
+  header .nav-brand img {
+    width: 85px;
+  }
+  .lg-logo img {
+    width: 50px;
+  }
+  .banner-carousel h2 {
+    margin: 50px 0;
+  }
+  .banner-carousel h3 {
+    margin-bottom: 24px;
+  }
+  .banner-carousel .trans-bg {
+    padding-bottom: 50px; 
+  }
+  .banner h2 a {
+    -webkit-box-shadow: 0px 0px 0px 15px rgba(16, 23, 26, 0.21); 
+       -moz-box-shadow: 0px 0px 0px 15px rgba(16, 23, 26, 0.21);
+            box-shadow: 0px 0px 0px 15px rgba(16, 23, 26, 0.21);
+  }
+  header .app li .fa {
+    font-size: 14px;
+  } 
+  .banner-title {
+    font-size: 24px;
+  }
+  .banner p {
+    font-size: 14px;
+  }
+  .banner h2, .banner h3, .banner p {
+    margin-bottom: 24px;
+  }
+  .intro, 
+  .screenshot,
+  .pricingtable-section,
+  .support {
+      padding: 40px 0;
+  }
+  section.description {
+      padding-top: 40px;
+  }
+  section.banner {
+      padding: 0;
+  }
+  .trans-bg {
+    padding: 50px 0;
+  }
+   .title h2, h2 {
+    font-size: 34px;
+    padding: 0 0px 10px;
+   }
+   .support-block {
+    margin-bottom: 50px;
+   }
+   .support-block:last-child {
+     margin-bottom: 0;
+   }
+   .app-block {
+    margin-bottom: 30px;
+   }
+   .subscription h2 {
+     font-size: 18px;
+   }
+   .review .carousel-inner .item {
+      padding: 0 50px;
+    }
+   .review .carousel-control .fa {
+      font-size: 70px;
+    }
+    .support-block {
+      margin-bottom: 70px;
+    }
+   .social-icon .fa {
+    font-size: 18px;
+    color: #0aabe1;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #fff;
+    line-height: 2;
+    border: 5px solid rgba(107, 197, 225, 0.48);
+  }
+  .social-icon a:active .fa,
+  .social-icon a.active .fa,
+  .social-icon a:hover .fa {
+    border: 5px solid #fff;
+    line-height: 2;
+  }
+  .subscription .form-control {
+    height: 36px;
+    line-height: 28px;
+  }
+  .btn-sub {
+    padding: 7px 20px;
+  }  
+  .contact .nav-tabs li .fa {
+    background: #0aabe1;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px rgb(255, 255, 255);
+    color: #fff;
+    line-height: 2;
+    text-align: center;
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+  .contact .nav-tabs li .fa:hover, 
+  .contact .nav-tabs > li.active > a .fa, 
+  .contact .nav-tabs > li.active > a:hover .fa, 
+  .contact .nav-tabs > li.active > a:focus .fa {
+    background: none repeat scroll 0 0 #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.75);
+    -moz-box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.75);
+    color: #0aabe1;
+  }
+  .contact .contact-info h2 {
+    margin-bottom: 20px;
+  }
+  .contact .nav-tabs li {
+    margin: 0 4% 10px;
+  }
+  .banner-carousel .app li,
+  .banner .app li {
+    display: inline-block;
+    margin: 0 15px;
+  }
+  .banner-carousel .app li .fa,
+  .banner .app li .fa {
+    font-size: 32px;
+  }
+  
+  .owl-theme .owl-controls {
+    top: 40%;
+  }
+  .social-icon {
+    margin-bottom: 20px;
+  }
+  .copyright p {
+    margin: 20px 0;
+  }
+  .social-icon a {
+    margin: 0 8px 10px 8px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+   .title h2, h2 {
+    font-size: 24px;
+   }
+   .video-mask h2 {
+    margin-bottom: 14px;
+   }
+   .play {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 5px;
+    background-size: 50% 50%;
+    -webkit-background-size: 50% 50%;
+    -o-background-size: 50% 50%;
+    box-shadow: 0px 0px 0px 10px rgba(0, 167, 221, 0.5);
+    -webkit-box-shadow: 0px 0px 0px 10px rgba(0, 167, 221, 0.5);
+    -moz-box-shadow: 0px 0px 0px 10px rgba(0, 167, 221, 0.5);
+   }
+   .contact .nav-tabs li .fa {
+      width: 35px;
+      height: 35px;
+      font-size: 16px;
+      -webkit-box-shadow: 0px 0px 0px 10px rgb(255, 255, 255);
+         -moz-box-shadow: 0px 0px 0px 10px rgb(255, 255, 255);
+              box-shadow: 0px 46
+              0px 0px 10px rgb(255, 255, 255);
+   }
+   .contact .nav-tabs li .fa:hover,
+   .contact .nav-tabs > li.active > a .fa,
+   .contact .nav-tabs > li.active > a:hover .fa,
+   .contact .nav-tabs > li.active > a:focus .fa {
+    -webkit-box-shadow: 0px 0px 0px 10px rgba(255, 255, 255,0.75);
+       -moz-box-shadow: 0px 0px 0px 10px rgba(255, 255, 255,0.75);
+            box-shadow: 0px 0px 0px 10px rgba(255, 255, 255,0.75);
+   }
+   .contact .nav-tabs li {
+    margin: 0 2%;
+   }
+}
+
+/*
+========================================================
+Maintaining the lower vieport response for video section
+========================================================
+*/
+
+/*-----Targetting the 800px -----*/
+
+@media screen and (max-width: 800px) {
+  .video {
+    height: 433px;
+  }
+  .video-container {
+    margin-top: -15px;
+  }
+  .video-mask {
+    padding: 46px 0px;
+  }
+}
+
+/*-----Targetting the 768px -----*/
+
+@media screen and (max-width: 768px) {
+  .video {
+    height: 417px;
+  }
+  .video-container {
+    margin-top: -10px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .video-mask {
+     padding: 57px 0px;
+  }
+}
+
+
+/*-----Targetting the iPhone 6 plus and similar viewport-----*/
+
+@media screen and (max-width: 414px) {
+  .title h2, h2 {
+    font-size: 24px;
+   }
+   .video-mask {
+     padding: 42px 0;
+   }
+   .video-mask h2 {
+    margin-bottom: 14px;
+   }
+  .video {
+    height: 255px;
+  }
+  .play {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 5px;
+    background-size: 50% 50%;
+    -webkit-background-size: 50% 50%;
+    -o-background-size: 50% 50%;
+    box-shadow: 0px 0px 0px 10px rgba(0, 167, 221, 0.5);
+    -webkit-box-shadow: 0px 0px 0px 10px rgba(0, 167, 221, 0.5);
+    -moz-box-shadow: 0px 0px 0px 10px rgba(0, 167, 221, 0.5);
+   }
+}
+
+/*-----Targetting the Samsung Gallaxy Note and similar viewport-----*/
+
+@media screen and (max-width: 400px) {
+  .video {
+    height: 220px;
+  }  
+}
+
+/*-----Taretting the BlackBerry Z10, Google Nexus 4 and similar viewport-----*/
+
+@media screen and (max-width: 384px) {
+  .video {
+    height: 218px;
+  }
+}
+
+/*-----Taretting the iPhone 6 and similar viewport-----*/
+
+@media screen and (max-width: 375px) {
+  .video {
+    height: 255px;
+  }
+}
+
+
+/*-----Taretting the BalckBerry Z30, Samsung Gallaxy Note,Samsung Gallaxy Note II, Google Nexus 5 and similar viewport-----*/
+
+@media screen and (max-width: 360px) {
+  .video {
+    height: 211px;
+  }
+  .video-mask {
+    padding: 20px 0;
+  }
+}
+
+/*-----Taretting the iPhone 3gs iPhone 4, iPhone 5, Google Nexus S and similar viewport-----*/
+
+@media screen and (max-width: 320px) {
+  .video {
+    height: 192px;
+  }
+  .video-container {
+    margin-top: -3px;
+  }
+  .video-mask {
+    padding: 10px 0px;
+  }
+}
+

@@ -1,22 +1,345 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
   <head>
     <meta charset="UTF-8">
-    <title>Astrosound by XNBlank</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+	<title>AstroSound REDUX</title>
+    <meta name="description" content="AstroSound Redux - Slick Responsive Music Player for your desktop.">
+    <meta name="author" content="XNBlank">
+
+	<!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="assets/css/animate.css">
+
+    <!-- Owl-carousel style -->
+    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="assets/css/owl.theme.css">
+
+    <!-- magnific style -->
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+
+    <!-- Custom stylesheet-->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/responsive.css" media="screen">
+
+    <!-- Added google font -->
+    <link href='http://fonts.googleapis.com/css?family=Dosis:400,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,700' rel='stylesheet' type='text/css'>
+
+    <!--Fav and touch icons-->
+    <link rel="shortcut icon" href="assets/images/icons/favicon.ico">
+    <link rel="apple-touch-icon" href="assets/images/icons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/icons/apple-touch-icon-114x114.png">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
   </head>
   <body>
-    <section class="page-header">
-      <h1 class="project-name">Astrosound</h1>
-      <h2 class="project-tagline">A modern music player made with Electron</h2>
-      <a href="https://github.com/XNBlank/AstroSound" class="btn">View on GitHub</a>
-      <a href="https://github.com/XNBlank/AstroSound/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/XNBlank/AstroSound/tarball/master" class="btn">Download .tar.gz</a>
+
+	<!-- Preloader -->
+      <div id="faceoff">
+        <div id="preloader"></div>
+        <div class="preloader-section"></div>
+      </div>
+    <!-- Preloader end -->
+
+    <!-- header start -->
+    <header id="home" class="navbar-fixed-top">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3">
+              <!-- Brand and toggle get grouped for better mobile display -->
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <h1><a class="nav-brand" href="#banner"> <img src="assets/images/logo.png" alt="AstroSound"></a></h1>
+              </div>
+            </div>
+            <div class="col-sm-7">
+              <!-- Collect the nav toggling -->
+              <div class="collapse navbar-collapse navbar-example" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                  <li><a href="#intro">Features</a></li>
+                  <li><a href="#feature">Source Code</a></li>
+                  <li><a href="#screenshot">Screenshots</a></li>
+                  <li><a href="#download">Download</a></li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div>
+            <div class="col-sm-2 mob-right">
+              <ul class="app pull-right">
+                <li><i class="fa fa-apple soon"></i><span class="soon-message">Coming Soon!</span></li>
+                <li><i class="fa fa-linux soon"></i><span class="soon-message">Coming Soon!</span></li>
+                <li><i class="fa fa-windows soon"></i><span class="soon-message">Coming Soon!</span></li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- /.container -->
+      </nav>
+    </header>
+    <!-- header end -->
+
+    <!-- banner start -->
+    <section id="banner" class="banner">
+      <div class="trans-bg">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <h2><a href="" class="default-color"><img src="assets/images/logo-large.png" alt="AstroSound"></a></h2> <!--/ .lg-logo -->
+               <div class="flex_text text-slider">
+                  <ul class="slides">
+                      <li>Slick Material based music player for your desktop.</li>
+                      <li>A music player out of this world!</li>
+                      <li>Listening to music has never been this amazing.</li>
+                  </ul>
+                </div>
+                <!--/.text-slider end-->
+                <div class="download-block text-center">
+                   <a href="#download" class="btn-download">Download</a><a href="#intro" class="btn-download">Learn More</a>
+                 </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- /.trans-bg -->
     </section>
+    <!-- banner end -->
+
+    <!-- intro start -->
+    <section id="intro" class="intro white">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <span class="sub-head wow fadeInLeft">some of our</span>
+            <div class="title wow fadeInRight">
+              <h2>Planned Features</h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="app-block wow bounceInUp" data-wow-delay=".1s">
+              <i class="fa fa-css3"></i>
+              <h3>Customizability</h3>
+              <p>Easily create your own look for AstroSound, using the built in theme picker or custom CSS.</p>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="app-block wow bounceInUp" data-wow-delay=".2s">
+              <i class="fa fa-lastfm"></i>
+              <h3>LastFM Integration</h3>
+              <p>Scrobble your played songs onto LastFM and let the world know what you've been listening to.</p>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="app-block wow bounceInUp" data-wow-delay=".3s">
+              <i class="fa fa-twitch"></i>
+              <h3>Streamer Friendly</h3>
+              <p>Be able to output your currently playing song to a clean formatted text file to use within your streams and let your viewers know what hot song you're playing.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="app-block wow bounceInUp" data-wow-delay=".4s">
+              <i class="fa fa-heart"></i>
+              <h3>Favouriting</h3>
+              <p>Save your favourite songs into a seperate playlist to easily find and listen to them again without having to shuffle through your library.</p>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="app-block wow bounceInUp" data-wow-delay=".5s">
+              <i class="fa fa-pencil-square-o"></i>
+              <h3>ID3 Editor and Viewer</h3>
+              <p>Fix broken and missing ID3 tags on your songs. Never again will you wonder what album your favourite song is from.</p>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="app-block wow bounceInUp" data-wow-delay=".6s">
+              <i class="fa fa-puzzle-piece"></i>
+              <h3>Extensions</h3>
+              <p>Build upon the base with your own extensions and add more features you think may be missing!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- intro end -->
+
+    <!-- feature start -->
+    <section id="feature" class="feature">
+      <div class="trans-bg">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <h2 class="wow swing" data-wow-delay=".1s">Open Source</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 wow bounceInUp" data-wow-delay=".5s">
+              <img class="img-responsive" src="assets/images/bounce-up-screen.png" alt="Why to choose us">
+            </div>
+            <div class="col-sm-6">
+              <ul class="feature-list-right">
+                <li>
+                  <div class="feature-icon wow fadeInRight" data-wow-delay=".3s">
+                    <i class="fa fa-code-fork"></i>
+                  </div>
+                  <div class="feature-detail wow fadeInRight" data-wow-delay=".4s">
+                    <h4>Free software should be free!</h4>
+                    <p>AstroSound is and always will be open source, as we believe free software should be free to use and free to edit.</p>
+                  </div>
+                </li>
+                <li>
+                  <div class="feature-detail wow fadeInRight" data-wow-delay=".4s">
+                    <span class="wow fadeInLeft animated" style="display: inline-block; visibility: visible; animation-name: fadeInLeft;"><a href="https://github.com/XNBlank/AstroSound-Redux" class="btn"><i class="fa fa-archive"></i> Download Source</a></span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.trans-bg -->
+    </section>
+    <!-- feature end -->
+
+    <!-- screenshot start -->
+    <section id="screenshot" class="screenshot">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <span class="sub-head wow fadeInLeft">take a look</span>
+            <div class="title wow fadeInRight">
+              <h2>screenshots</h2>
+            </div>
+            <div id="owl-demo" class="owl-carousel">
+                <div class="item screenshot-block">
+                  <img src="./assets/images/screenshot1.png" alt="Screenshot">
+                  <div class="caption">
+                    <a class="test-popup-link" href="./assets/images/screenshot1.png"><i class="fa fa-plus"></i></a>
+                  </div>
+                </div>
+                <div class="item screenshot-block">
+                  <img src="./assets/images/screenshot2.png" alt="Screenshot">
+                  <div class="caption">
+                    <a class="test-popup-link" href="./assets/images/screenshot2.png"><i class="fa fa-plus"></i></a>
+                  </div>
+                </div>
+                <div class="item screenshot-block">
+                  <img src="./assets/images/screenshot3.png" alt="Screenshot">
+                  <div class="caption">
+                    <a class="test-popup-link" href="./assets/images/screenshot3.png"><i class="fa fa-plus"></i></a>
+                  </div>
+                </div>
+                <div class="item screenshot-block">
+                  <img src="./assets/images/screenshot4.png" alt="Screenshot">
+                  <div class="caption">
+                    <a class="test-popup-link" href="./assets/images/screenshot4.png"><i class="fa fa-plus"></i></a>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- screenshot end -->
+
+    <!-- download start -->
+    <section id="download" class="download">
+      <div class="trans-bg">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <h2 class="wow swing">download</h2>
+              <p>AstroSound is not ready for release yet, but will be coming soon!</p>
+              <span class="wow fadeInLeft" style="display:inline-block"><a href="" class="btn disabled"><i class="fa fa-apple"></i> Mac OSX</a></span>
+              <span class="wow fadeInLeft" style="display:inline-block"><a href="" class="btn disabled"><i class="fa fa-linux"></i> Linux</a></span>
+              <span class="wow fadeInLeft" style="display:inline-block"><a href="" class="btn disabled"><i class="fa fa-windows"></i> Windows</a></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <span class="wow fadeInLeft" style="display:inline-block"><a href="https://github.com/XNBlank/AstroSound-Redux" class="btn"><i class="fa fa-archive"></i> Source Code</a></span>
+            </div>
+          </div>
+        </div>
+      </div> <!-- /.trans-bg -->
+    </section>
+    <!-- download end -->
+
+    <!-- footer start -->
+    <footer id="footer" class="screenshot white">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 text-center">
+            <div class="social-icon">
+             <a href="" class="wow rollIn animated" data-wow-delay=".1s"><i class="fa fa-facebook"></i></a>
+             <a href="" class="wow rollIn animated" data-wow-delay=".2s"><i class="fa fa-twitter"></i></a>
+             <a href="" class="wow rollIn animated" data-wow-delay=".3s"><i class="fa fa-google-plus"></i></a>
+            </div>
+            <div class="copyright">
+              <p>&copy; <span>AstroSound REDUX</span>2016, all right reserved</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="go-to-top">
+          <a href="#banner"></a>
+      </div>
+      <!--/.go-to-top end-->
+    </footer>
+    <!-- footer end -->
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+     <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
+    <script src="assets/js/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/smoothscroll.js"></script>
+	  <script src="assets/js/jquery.scrollTo.min.js"></script>
+	  <script src="assets/js/jquery.localScroll.min.js"></script>
+    <script src="assets/js/jquery.nav.js"></script>
+    <script src="assets/js/owl.carousel.js"></script>
+    <script src="assets/js/jquery.magnific-popup.js"></script>
+    <script src="assets/js/jquery.parallax.js"></script>
+    <script src="assets/js/jquery.flexslider-min.js"></script>
+    <script src="assets/js/jquery.ajaxchimp.min.js"></script>
+    <script src="assets/js/matchMedia.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/wow.js"></script>
+    <script src="assets/js/easing.js"></script>
+
+    <script>
+    	$(document).ready(function() {
+		// "use strict";
+        $('#banner').parallax("50%", 0.5, true);
+    		$('#feature').parallax("50%", 0.5, true);
+    		$('#download').parallax("50%", 0.5, true);
+        $('#footer').parallax("50%", 0.5, true);
+    	});
+
+    </script>
+
+
 
   </body>
 </html>
