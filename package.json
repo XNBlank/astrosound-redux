@@ -4,7 +4,7 @@
   "main": "main.js",
   "dependencies": {
     "jsmediatags": "^3.0.5",
-    "node-json-db": "^0.7.2",
+    "nedb": "^1.8.0",
     "open": "0.0.5",
     "spotify-web-api-node": "^2.3.0"
   }

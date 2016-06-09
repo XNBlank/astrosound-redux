@@ -5,14 +5,12 @@
     var window = BrowserWindow.getFocusedWindow();
     window.$ = window.jQuery = require('./js/vendor/jquery.min.js');
     var jsmediatags = require("jsmediatags");
-    var JsonDB = require("node-json-db");
     var SpotifyAPI = require("spotify-web-api-node");
     var spotify = new SpotifyAPI();
-    var db = new JsonDB("settings", true, false);
     var path_ = require("path");
 
     var home = getUserHome();
-    var savePath = path_.join(home + "/.astrosound", "settings");
+    var savePath = path_.join(home + "/.astrosound", "settings.db");
 
     var music = document.getElementById('audio_player');
     var paused;
@@ -24,6 +22,9 @@
     var savedDirs = [];
 
     var fullresart; //Full Resolution Album Art
+
+    var Datastore = require('nedb')
+    , db = new Datastore({ filename: savePath, autoload: true });
 
 //Gets HOME of users computer. Used to grab a path to save data.
     function getUserHome() {
@@ -49,7 +50,7 @@
         }
 
 
-        
+
 
 /*
 Was used to grab album art from ID3. Was too slow and failed to work 80% of the time. Possible to fix however.
@@ -93,20 +94,47 @@ Was used to grab album art from ID3. Was too slow and failed to work 80% of the 
 
 
 //Gets Song info and Album Art
-    function getID3(file, cb){
+    function getID3(file, path, cb){
 
         var metadata;
 
-        jsmediatags.read(file, {
+        jsmediatags.read(path, {
+
           onSuccess: function(tag) {
-            console.log(tag);
+            //console.log(tag);
             var title = tag.tags.title;
             var album = tag.tags.album;
             var artist = tag.tags.artist;
             var artArr = tag.tags.picture;
             metadata = [title,album,artist];
 
-            console.log(metadata);
+            //console.log(metadata);
+            songList.push(metadata);
+
+
+            var songData = { title: title
+                            ,artist: artist
+                            ,album: album
+                            ,location: escape(path)
+                           };
+
+            //console.log(songData);
+
+            db.find({location: escape(path)}, function (err, docs) {
+              if(docs.length > 0){
+                //console.log("Already added this song.");
+                return;
+              }
+
+              db.insert(songData, function (err, pushed) {   // Callback is optional
+
+                if(err) console.log(err);
+                //console.log(pushed);
+              });
+            });
+
+
+            //$("#loadingMessage").html("Importing " + title + " : " + artist + " - " + album);
             cb(metadata);
             //var stackSize = computeMaxCallStackSize();
 
@@ -139,8 +167,8 @@ function searchSpotify(title, artist, album){
         try{
             artlink = data.body.tracks.items[0].album.images[1].url;
             fullresart = data.body.tracks.items[0].album.images[0].url;
-            console.log(fullresart);
-            console.log(artlink);
+            //console.log(fullresart);
+            //console.log(artlink);
         }catch(e){
             $("#album-art").css({
                 "background": "url(./img/empty.png) no-repeat center center",
@@ -169,9 +197,9 @@ function searchSpotify(title, artist, album){
                 "artist": artist,
                 "album": album
             });
-            console.log(songInfo);
+            //console.log(songInfo);
             songList.push(songInfo);
-            //db.push(songList);
+
         }, 1);
 
     }catch(e){
@@ -208,6 +236,104 @@ function searchSpotify(title, artist, album){
 
     audio_player.addEventListener("timeupdate", timeUpdate, false);
 
+    $(document).ready(function(){
+    	loadDir(db);
+    });
+
+
+//Load the music into the application
+function loadDir(database){
+    var output = "";
+    var songCount;
+    var data;
+
+    database.count({}, function (err, count) {
+      //console.log(count);
+      songCount = count;
+    });
+
+    setTimeout(function () {
+
+      document.getElementById("library").style.display = "none";
+      document.getElementById("settings").style.display = "none";
+      document.getElementById("favorites").style.display = "none";
+      document.getElementById("playlists").style.display = "none";
+      document.getElementById("loading-screen").style.display = "initial";
+
+      database.find({}, function (err, docs) {
+        for(var i = 0; i < songCount; i++){
+          //console.log("Song No. " + i)
+          //console.log(err);
+          //console.log(docs[i]);
+          data = docs[i];
+          //console.log(data);
+          //console.log(data.title);
+          //console.log(data.artist);
+          //console.log(data.album);
+          //console.log(data.location);
+
+          //console.log(data);
+
+          var unescapedPath = unescape(data.location);
+
+          function escapeHtml(unsafe) {
+              return unsafe
+                   .replace(/"/g, "&quot;")
+                   .replace(/'/g, "&#039;");
+           }
+
+           var safePath = escapeHtml(unescapedPath).split("\\").join("\\\\");
+           //console.log(safePath);
+           var safeName;
+           var safeArtist;
+           var safeAlbum;
+
+           if(data.title == undefined) {
+             safeName = safePath;
+           } else {
+             safeName = data.title;
+           }
+
+           if(data.artist == undefined) {
+             safeArtist = "";
+           } else {
+             safeArtist = data.artist;
+           }
+
+           if(data.album == undefined) {
+             safeAlbum = "";
+           } else {
+             safeAlbum = data.album;
+           }
+
+            //This is super messy and needs an alternative. For now, this is working.
+            output += "\
+            <tr class='song-row songNo" + i + "' value='" + safePath + "'>\
+              <td class='mdl-data-table__cell--non-numeric song-rowName'>" + safeName + "</td>\
+              <td class='mdl-data-table__cell--non-numeric song-rowArtist'>" + safeArtist + "</td>\
+              <td class='mdl-data-table__cell--non-numeric'song-rowAlbum>" + safeAlbum + "</td>\
+              <td></td>\
+              <td class='mdl-data-table__cell--non-numeric'><button class='mdl-button mdl-js-button mdl-button--icon'><i class='material-icons'>favorite</i></button></td>\
+              <td class='mdl-data-table__cell--non-numeric'><button class='mdl-button mdl-js-button mdl-button--icon'><i class='material-icons'>playlist_add</i></button></td>\
+            </tr>\
+            ";
+        }
+
+        document.getElementById("library").style.display = "initial";
+        document.getElementById("settings").style.display = "none";
+        document.getElementById("favorites").style.display = "none";
+        document.getElementById("playlists").style.display = "none";
+        document.getElementById("loading-screen").style.display = "none";
+
+        //Add to the music page.
+        document.getElementById("inner").innerHTML += output;
+      });
+
+    }, 500);
+
+}
+
+
 
 //Adding Directories
 
@@ -238,6 +364,12 @@ $(function () {
     $("#add_directory").on("change", function (e) {
         var files = $(this)[0].files;
 
+        document.getElementById("library").style.display = "none";
+        document.getElementById("settings").style.display = "none";
+        document.getElementById("favorites").style.display = "none";
+        document.getElementById("playlists").style.display = "none";
+        document.getElementById("loading-screen").style.display = "initial";
+
         for (var i = 0; i < files.length; i++) {
             console.log(files[i].path);
             if((savedDirs.indexOf(files[i].path) > -1)){
@@ -245,19 +377,26 @@ $(function () {
                 alert("Duplicate Directory added.");
             } else {
                 var dirList = getFiles(files[i].path);
-                alert("Got path " + files[i].path);
+                //alert("Got path " + files[i].path);
                 savedDirs.push(files[i].path);
                 console.log(dirList);
 
 
                 for(var j = 0; j < dirList.length; j++){
-                    var songID3 = getID3(dirList[j]);
+                    getID3(dirList[j], files[i].path + "/" + dirList[j], function(songID3){
+                      console.log(songList);
+                      $("#loadingMessage").html("Importing " + songID3[0] + " : " + songID3[2] + " - " + songID3[1]);
+                    });
+
+                    console.log(j);
 
                 }
 
                 setTimeout(function () {
-                    console.log(songList);
+                  document.getElementById("inner").innerHTML += "";
+                  loadDir(db);
                 }, 350);
+
             }
         }
 
@@ -273,17 +412,20 @@ $(function () {
             var files = $(this)[0].files;
             var _name = files[0].name;
             var __dir = files[0].path;
+
+            console.log(files);
+            console.log(_name);
+            console.log(__dir);
             try{
-                getID3(files[0], function(songID3){
+                getID3(files[0], __dir, function(songID3){
                     console.log(songID3);
                     searchSpotify(songID3[0],songID3[2],songID3[1]);
+                    $('#inner').empty();
+                    loadDir(db);
                 });
             }catch(e){
                 console.log(e);
             }
-
-
-
 
             var _dir = __dir.split("\\" + _name);
             console.log(_name);
@@ -295,6 +437,38 @@ $(function () {
             audio_player.currentTime = 0;
             audio_player.play();
         });
+    });
+
+    $(function(){
+      $(document).on('click', ".song-row", function() {
+        console.log("Hi");
+        var song = $(this).attr("value");
+        console.log(song);
+
+        var path = song.split("\\\\").join("\\");
+        var file = path.substring(path.lastIndexOf("\\") + 1);
+
+        try{
+            getID3(file, path, function(songID3){
+                console.log(songID3);
+                searchSpotify(songID3[0],songID3[2],songID3[1]);
+            });
+        }catch(e){
+            console.log(e);
+        }
+
+
+        db.find({location: escape(path)}, function (err, docs) {
+          console.log(docs[0].title);
+          console.log(docs[0].artist);
+          console.log(docs[0].album);
+        });
+
+        paused = false;
+        audio_player.src = song;
+        audio_player.currentTime = 0;
+        audio_player.play();
+      });
     });
 
 
@@ -438,6 +612,7 @@ $(function(){
 
     });
 });
+
 
 $(function(){
     $("#volume_button").on("click", function() {

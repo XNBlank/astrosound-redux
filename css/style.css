@@ -14,10 +14,10 @@
 ::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    background: rgba(0,0,0,0.5);
+    background: rgba(140, 140, 140, 0.5);
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-	background: rgba(0,0,0,0.2);
+	background: rgba(128, 128, 128, 0.2);
 }
 
 body{
@@ -68,12 +68,17 @@ h3{
 
 .mdl-mini-footer{
     padding: 8px 16px;
-
+    position: fixed;
+    height: 25px;
+    width: 100%;
+    z-index: 10;
+    bottom: 0;
 }
 
 .mdl-mini-footer button{
-    width: 48px;
-    height: 48px;
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
 }
 
 .mdl-mini-footer .mdl-button--colored{
@@ -81,8 +86,8 @@ h3{
 }
 
 .mdl-mini-footer .material-icons{
-    font-size: 48px;
-    left: 25%;
+    font-size: 24px;
+    left: 50%;
 }
 
 .mdl-mini-footer__left-section{
@@ -91,32 +96,38 @@ h3{
 
 .mdl-mini-footer__middle-section{
     min-width: 60%;
+    margin-top: -12px;
 }
 
 @media screen and (min-width: 1400px) {
     .mdl-mini-footer__middle-section{
         min-width: 75%;
+        margin-top: -12px;
     }
 }
 @media screen and (min-width: 1100px) {
     .mdl-mini-footer__middle-section{
         min-width: 60%;
+        margin-top: -12px;
     }
 }
 @media screen and (max-width: 925px) {
     .mdl-mini-footer__middle-section{
         min-width: 45%;
+        margin-top: -12px;
     }
 }
 @media screen and (max-width: 800px) {
     .mdl-mini-footer__middle-section{
         min-width: 40%;
+        margin-top: -12px;
     }
 }
 
 @media screen and (max-width: 625px) {
     .mdl-mini-footer__middle-section{
         min-width: 20%;
+        margin-top: -12px;
     }
 }
 
@@ -219,6 +230,53 @@ h3{
     width: 100%;
 }
 
+#library .song-row{
+  cursor: pointer;
+}
+
+#library .song-rowName{
+  max-width: 100px;
+  overflow-x: hidden;
+}
+
+.mdl-layout__header__center{
+  position: absolute;
+  width: 80%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.mdl-layout__header__center .left-section{
+  position: absolute;
+  left: 20%;
+  transform: translate(-80%, 0);
+}
+
+.mdl-mini-footer--right-section, .mdl-mini-footer__right-section {
+    display: inline-block;
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+    padding-right: 25px;
+}
+
+.mdl-mini-footer .now-playing{
+  position: fixed;
+  height: 60px;
+  width: 100%;
+  z-index: 10;
+  bottom: 60px;
+}
+
+#library .song-rowArtist{
+  max-width: 50px;
+  overflow-x: hidden;
+}
+#library .song-rowAlbum{
+  max-width: 50px;
+  overflow-x: hidden;
+}
+
 #audio_file, #add_directory{
     display: none;
 }
@@ -231,7 +289,7 @@ h3{
     height: 24px;
     width: 150px;
     right: 64px;
-    bottom: 64px;
+    bottom: 40px;
     z-index: 1;
     background-color: #424242;
     padding: 5px;
@@ -248,7 +306,7 @@ h3{
     height: 24px;
     width: 150px;
     right: 64px;
-    bottom: 64px;
+    bottom: 40px;
     z-index: 1;
     background-color: #424242;
     padding: 5px;
