@@ -6,6 +6,7 @@
     "jsmediatags": "^3.0.5",
     "nedb": "^1.8.0",
     "open": "0.0.5",
-    "spotify-web-api-node": "^2.3.0"
+    "spotify-web-api-node": "^2.3.0",
+    "av": "^0.4.8"
   }
 }

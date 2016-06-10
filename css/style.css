@@ -38,6 +38,7 @@ h3{
 
 .mdl-layout__header-row{
     padding: 0 10px 0 80px;
+    height: 64px;
 }
 
 .drag-region{
@@ -133,7 +134,10 @@ h3{
 
 .mdl-mini-footer .playbar{
     margin: 16px 0;
-    width: 100%;
+    position: absolute;
+    width: 40%;
+    transform: translate(-50%,0);
+    left: 50%;
 }
 
 .information{
@@ -176,7 +180,7 @@ h3{
 #album-art{
     width: 60px;
     height: 60px;
-    margin: 0;
+    margin: 2px 0 0;
     display: inline-block;
     background: black url("../img/empty.png") no-repeat center center;
     background-size: 100%;
@@ -195,17 +199,26 @@ h3{
     cursor: pointer;
 }
 
-.time-allott, .time-left{
+.time-left{
     width: 35px;
     height: 25px;
     margin: 0;
-    display: inline-block;
-    margin-top: -18px;
+    position: absolute;
+    bottom: 5px;
+    left: 70%;
+    transform: translate(-10%, 0);
 }
 
 .time-allott{
+    width: 35px;
+    height: 25px;
+    margin: 0;
     margin-left: -25px;
     margin-right: 20px;
+    position: absolute;
+    bottom: 5px;
+    left: 28%;
+    transform: translate(5%,0);
 }
 
 .info-bar{
@@ -214,11 +227,10 @@ h3{
     font-weight: bold;
     font-size: 16px;
     width: 60%;
-    text-align: center;
+    text-align: left;
     /*background: #000;*/
-    margin-top: 18px;
+    margin-top: 22px;
     display: inline-block;
-    line-height: 23px;
 }
 
 .info-bar p{
@@ -250,6 +262,10 @@ h3{
   position: absolute;
   left: 20%;
   transform: translate(-80%, 0);
+}
+
+.mdl-layout__drawer-button {
+  margin: 10px 12px;
 }
 
 .mdl-mini-footer--right-section, .mdl-mini-footer__right-section {

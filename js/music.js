@@ -17,6 +17,7 @@
     var repeat = false;
     var shuffle = false;
     var volumeHidden = true;
+    var curSong;
     songInfo = ({});
     songList = [];
     var savedDirs = [];
@@ -308,7 +309,7 @@ function loadDir(database){
 
             //This is super messy and needs an alternative. For now, this is working.
             output += "\
-            <tr class='song-row songNo" + i + "' value='" + safePath + "'>\
+            <tr class='song-row' id='songNo" + i + "' value='" + safePath + "'>\
               <td class='mdl-data-table__cell--non-numeric song-rowName'>" + safeName + "</td>\
               <td class='mdl-data-table__cell--non-numeric song-rowArtist'>" + safeArtist + "</td>\
               <td class='mdl-data-table__cell--non-numeric'song-rowAlbum>" + safeAlbum + "</td>\
@@ -443,6 +444,8 @@ $(function () {
       $(document).on('click', ".song-row", function() {
         console.log("Hi");
         var song = $(this).attr("value");
+        var _curSong = $(this).attr("id");
+        curSong = parseInt(_curSong.replace("songNo", ""));
         console.log(song);
 
         var path = song.split("\\\\").join("\\");
@@ -540,7 +543,26 @@ $(function () {
                 }
             } else {
                 if(timeLeft <= 1){
-                    paused = true;
+                    //paused = true;
+                    var _cSong = $('*[id^="songNo"]');
+                    var _i;
+                    var i = _cSong.length-1;
+
+                    if(shuffle == false){
+                      if(curSong == i){
+                          console.log("Hit the end of the list!");
+                          _i = 0;
+                      } else {
+                          _i = curSong + 1;
+                      }
+                    } else {
+                      var _i = Math.floor(Math.random() * (i - 0 + 1)) + 0;
+                    }
+
+
+                    console.log(i);
+                    $("#songNo" + _i).trigger('click');
+
                 }
 
             }
@@ -583,6 +605,55 @@ document.getElementById("stop_button").addEventListener("click", function(e) {
 });
 
 $(function(){
+    $("#next_song").on("click", function(){
+      var _cSong = $('*[id^="songNo"]');
+      var _i;
+      var i = _cSong.length-1;
+
+      if(shuffle == false){
+        if(curSong == i){
+            console.log("Hit the end of the list!");
+            _i = 0;
+        } else {
+            _i = curSong + 1;
+        }
+      } else {
+        var _i = Math.floor(Math.random() * (i - 0 + 1)) + 0;
+      }
+
+
+      console.log(i);
+      $("#songNo" + _i).trigger('click');
+
+    });
+});
+
+$(function(){
+    $("#last_song").on("click", function(){
+      var _cSong = $('*[id^="songNo"]');
+      var _i;
+      var i = _cSong.length-1;
+
+      if(shuffle == false){
+        if(curSong == 0){
+            console.log("This is the start of the list!");
+            _i = i;
+        } else {
+            console.log("Play next song.")
+            _i = curSong - 1;
+        }
+      } else {
+        var _i = Math.floor(Math.random() * (i - 0 + 1)) + 0;
+      }
+
+
+      console.log(i);
+      $("#songNo" + _i).trigger('click');
+
+    });
+});
+
+$(function(){
     $("#repeat_button").on("click", function(){
         if(repeat == false){
             repeat = true;
@@ -591,6 +662,19 @@ $(function(){
             repeat = false;
             $("#repeat_button").removeClass("mdl-button--colored");
         }
+    });
+});
+
+$(function(){
+    $("#shuffle_button").on("click", function(){
+        if(shuffle == false){
+            shuffle = true;
+            $("#shuffle_button").addClass("mdl-button--colored");
+        } else {
+            shuffle = false;
+            $("#shuffle_button").removeClass("mdl-button--colored");
+        }
+        console.log(shuffle);
     });
 });
 
