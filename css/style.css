@@ -304,10 +304,11 @@ h3{
     position: fixed;
     height: 24px;
     width: 150px;
-    right: 64px;
-    bottom: 40px;
+    right: -3px;
+    bottom: 102px;
     z-index: 1;
     background-color: #424242;
+    transform: rotateZ(270deg);
     padding: 5px;
     box-shadow: 2px 2px 1px 1px rgba(0,0,0,0.3);
     transition: opacity .25s ease-in-out;
@@ -321,10 +322,11 @@ h3{
     position: fixed;
     height: 24px;
     width: 150px;
-    right: 64px;
-    bottom: 40px;
+    right: -3px;
+    bottom: 102px;
     z-index: 1;
     background-color: #424242;
+    transform: rotateZ(270deg);
     padding: 5px;
     box-shadow: 2px 2px 1px 1px rgba(0,0,0,0.3);
     transition: opacity .25s ease-in-out;

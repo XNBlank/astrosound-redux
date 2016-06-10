@@ -17,7 +17,7 @@
     var repeat = false;
     var shuffle = false;
     var volumeHidden = true;
-    var curSong;
+    var curSong = 0;
     songInfo = ({});
     songList = [];
     var savedDirs = [];
@@ -31,6 +31,31 @@
     function getUserHome() {
       return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
     }
+
+
+
+  window.setThumbarButtons([
+  {
+    tooltip: 'Previous Song',
+    icon: path_.join(__dirname, '/img/prev-song.png'),
+    click() { document.getElementById("last_song").click(); }
+  },
+  {
+    tooltip: 'Play',
+    icon: path_.join(__dirname, '/img/play.png'),
+    click() { document.getElementById("play_button").click(); }
+  },
+  {
+    tooltip: 'Stop',
+    icon: path_.join(__dirname, '/img/stop.png'),
+    click() { document.getElementById("stop_button").click(); }
+  },
+  {
+    tooltip: 'Next Song',
+    icon: path_.join(__dirname, '/img/next-song.png'),
+    click() { document.getElementById("next_song").click(); }
+  }
+]);
 
     if(!fs.existsSync(savePath)){
         console.log("Doesn't exist.");
@@ -149,7 +174,7 @@ Was used to grab album art from ID3. Was too slow and failed to work 80% of the 
 
           },
           onError: function(error) {
-            console.log(':(', error.type, error.info);
+            console.log(':(', error.type, error.info, path + file);
             return error.info;
           }
         });
@@ -365,6 +390,8 @@ $(function () {
     $("#add_directory").on("change", function (e) {
         var files = $(this)[0].files;
 
+        if(files == null) return;
+
         document.getElementById("library").style.display = "none";
         document.getElementById("settings").style.display = "none";
         document.getElementById("favorites").style.display = "none";
@@ -384,7 +411,11 @@ $(function () {
 
 
                 for(var j = 0; j < dirList.length; j++){
-                    getID3(dirList[j], files[i].path + "/" + dirList[j], function(songID3){
+                    var __song = dirList[j].substring(dirList[j].lastIndexOf("\/") + 1);
+                    var __dir = files[i].path;
+                    console.log(__song);
+                    console.log(files[i].path);
+                    getID3( __song, __dir + "\\" + __song, function(songID3){
                       console.log(songList);
                       $("#loadingMessage").html("Importing " + songID3[0] + " : " + songID3[2] + " - " + songID3[1]);
                     });

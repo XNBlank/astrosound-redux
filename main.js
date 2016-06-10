@@ -24,18 +24,7 @@ app.on('ready', function() {
         icon: __dirname + '/app.png'
     });
 
-    mainWindow.setThumbarButtons([
-  {
-    tooltip: 'Play',
-    icon: path.join(__dirname, '/img/play.png'),
-    click() { document.getElementById("play_button").click(); }
-  },
-  {
-    tooltip: 'Stop',
-    icon: path.join(__dirname, '/img/stop.png'),
-    click() { document.getElementById("stop_button").click(); }
-  }
-]);
+
 
     mainWindow.loadURL('file://' + __dirname + '/index.html');
 
