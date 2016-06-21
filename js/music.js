@@ -10,7 +10,7 @@
     var path_ = require("path");
 
     var home = getUserHome();
-    var savePath = path_.join(home + "/.astrosound", "settings.db");
+    var savePath = path_.join(home + "/.astrosound", "music.db");
 
     var music = document.getElementById('audio_player');
     var paused;
@@ -57,13 +57,6 @@
   }
 ]);
 
-    if(!fs.existsSync(savePath)){
-        console.log("Doesn't exist.");
-        fs.writeFile(savePath, '', function (err) {
-          if (err) throw err;
-          console.log('It\'s saved!');
-        });
-    }
 
 //Tests Max Stack Size
     function computeMaxCallStackSize() {
@@ -337,7 +330,7 @@ function loadDir(database){
             <tr class='song-row' id='songNo" + i + "' value='" + safePath + "'>\
               <td class='mdl-data-table__cell--non-numeric song-rowName'>" + safeName + "</td>\
               <td class='mdl-data-table__cell--non-numeric song-rowArtist'>" + safeArtist + "</td>\
-              <td class='mdl-data-table__cell--non-numeric'song-rowAlbum>" + safeAlbum + "</td>\
+              <td class='mdl-data-table__cell--non-numeric song-rowAlbum'>" + safeAlbum + "</td>\
               <td></td>\
               <td class='mdl-data-table__cell--non-numeric'><button class='mdl-button mdl-js-button mdl-button--icon'><i class='material-icons'>favorite</i></button></td>\
               <td class='mdl-data-table__cell--non-numeric'><button class='mdl-button mdl-js-button mdl-button--icon'><i class='material-icons'>playlist_add</i></button></td>\

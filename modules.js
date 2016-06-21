@@ -12,9 +12,19 @@
         var settings = document.getElementById("settings");
         var path_ = require("path");
         var home = getUserHome();
-        var savePath = path_.join(home + "/.astrosound", "settings");
+        var savePath = path_.join(home + "/.astrosound", "settings.db");
+
+        var Datastore = require('nedb')
+        , db = new Datastore({ filename: savePath, autoload: true });
+
+        var settingsDB = {
+          interface : "orange"
+        }
 
         var UIColor = "orange";
+
+
+
 
         var loadTimer = null;
 
@@ -121,147 +131,72 @@
         });
         };
 
-        $(function(){
-            $("#col-orange").prop('checked', true);
 
-            $("#col-orange").on("click", function(){
+      function updateUI(){
+        switch (UIColor) {
+            case "orange":
                 $("#colorScheme").attr("href", "./css/material.deep_orange-red.min.css");
-                UIColor = "orange";
-
-                if(!fs.existsSync(savePath)){
-                    console.log("Doesn't exist.");
-                    fs.writeFile(savePath, JSON.stringify(db.data, null, 4), function (err) {
-                      if (err) throw err;
-                      console.log('It\'s saved!');
-                    });
-                } else {
-                    fs.writeFile(savePath, JSON.stringify(db.data, null, 4), function (err) {
-                      if (err) throw err;
-                      console.log('It\'s saved!');
-                    });
-                }
-            });
-
-            $("#col-red").on("click", function(){
+                $("#theme-selector").val('Orange');
+            break;
+            case "red":
                 $("#colorScheme").attr("href", "./css/material.red-deep_orange.min.css");
-                UIColor = "red";
-
-                if(!fs.existsSync(savePath)){
-                    console.log("Doesn't exist.");
-                    fs.writeFile(savePath, JSON.stringify(db.data, null, 4), function (err) {
-                      if (err) throw err;
-                      console.log('It\'s saved!');
-                    });
-                } else {
-                    fs.writeFile(savePath, JSON.stringify(db.data, null, 4), function (err) {
-                      if (err) throw err;
-                      console.log('It\'s saved!');
-                    });
-                }
-            });
-
-            $("#col-blue").on("click", function(){
+                $("#theme-selector").val('Red');
+            break;
+            case "blue":
                 $("#colorScheme").attr("href", "./css/material.blue-light_blue.min.css");
-                UIColor = "blue";
-
-                if(!fs.existsSync(savePath)){
-                    console.log("Doesn't exist.");
-                    fs.writeFile(savePath, JSON.stringify(db.data, null, 4), function (err) {
-                      if (err) throw err;
-                      console.log('It\'s saved!');
-                    });
-                } else {
-                    fs.writeFile(savePath, JSON.stringify(db.data, null, 4), function (err) {
-                      if (err) throw err;
-                      console.log('It\'s saved!');
-                    });
-                }
-            });
-
-            $("#col-purple").on("click", function(){
+                $("#theme-selector").val('Blue');
+            break;
+            case "purple":
                 $("#colorScheme").attr("href", "./css/material.deep_purple-purple.min.css");
-                UIColor = "purple";
-
-                if(!fs.existsSync(savePath)){
-                    console.log("Doesn't exist.");
-                    fs.writeFile(savePath, JSON.stringify(db.data, null, 4), function (err) {
-                      if (err) throw err;
-                      console.log('It\'s saved!');
-                    });
-                } else {
-                    fs.writeFile(savePath, JSON.stringify(db.data, null, 4), function (err) {
-                      if (err) throw err;
-                      console.log('It\'s saved!');
-                    });
-                }
-            });
-
-            $("#col-green").on("click", function(){
+                $("#theme-selector").val('Purple');
+            break;
+            case "green":
                 $("#colorScheme").attr("href", "./css/material.green-light_green.min.css");
-                UIColor = "green";
-
-                if(!fs.existsSync(savePath)){
-                    console.log("Doesn't exist.");
-                    fs.writeFile(savePath, JSON.stringify(db.data, null, 4), function (err) {
-                      if (err) throw err;
-                      console.log('It\'s saved!');
-                    });
-                } else {
-                    fs.writeFile(savePath, JSON.stringify(db.data, null, 4), function (err) {
-                      if (err) throw err;
-                      console.log('It\'s saved!');
-                    });
-                }
-            });
-
-            $("#col-dark").on("click", function(){
+                $("#theme-selector").val('Green');
+            break;
+            case "dark":
                 $("#colorScheme").attr("href", "./css/material.dark-blue.css");
-                UIColor = "dark";
+                $("#theme-selector").val('Dark');
+            break;
+        }
+      }
 
-                if(!fs.existsSync(savePath)){
-                    console.log("Doesn't exist.");
-                    fs.writeFile(savePath, JSON.stringify(db.data, null, 4), function (err) {
-                      if (err) throw err;
-                      console.log('It\'s saved!');
-                    });
-                } else {
-                    fs.writeFile(savePath, JSON.stringify(db.data, null, 4), function (err) {
-                      if (err) throw err;
-                      console.log('It\'s saved!');
-                    });
-                }
+
+        $(function(){
+
+            $("#theme-selector").on("change", function(data){
+                //console.log("Test " + $(this).val());
+                UIColor = ($(this).val()).toLowerCase();
+
+                settingsDB.interface = UIColor;
+                db.remove({}, { multi: true }, function(err,old){
+                  db.insert(settingsDB, function(err,pushed){
+
+                  });
+                });
+
+                console.log(UIColor);
+                updateUI();
+                $("label[for='theme-selector'].mdl-textfield__label").html("Theme - Saved!");
+
             });
-
-            switch (UIColor) {
-                case "orange":
-                    $("#colorScheme").attr("href", "./css/material.deep_orange-red.min.css");
-                    $("#col-orange").prop('checked', true);
-                break;
-                case "red":
-                    $("#colorScheme").attr("href", "./css/material.red-deep_orange.min.css");
-                    $("#col-red").prop('checked', true);
-                break;
-                case "blue":
-                    $("#colorScheme").attr("href", "./css/material.blue-light_blue.min.css");
-                    $("#col-blue").prop('checked', true);
-                break;
-                case "purple":
-                    $("#colorScheme").attr("href", "./css/material.deep_purple-purple.min.css");
-                    $("#col-purple").prop('checked', true);
-                break;
-                case "green":
-                    $("#colorScheme").attr("href", "./css/material.green-light_green.min.css");
-                    $("#col-green").prop('checked', true);
-                break;
-                case "dark":
-                    $("#colorScheme").attr("href", "./css/material.dark-blue.css");
-                    $("#col-dark").prop('checked', true);
-                break;
-            }
 
             $("body").css("display","inherit");
 
         });
+
+        /*
+        var onSampleResized = function(e){
+            var table = $(e.currentTarget); //reference to the resized table
+        };
+
+        $("#tb-library").colResizable({
+            liveDrag:true,
+            gripInnerHtml:"<div class='grip'></div>",
+            draggingClass:"dragging",
+            onResize:onSampleResized
+        });
+        */
 
         document.onreadystatechange = function () {
         if (document.readyState == "complete") {
@@ -278,6 +213,26 @@
                 faves.style.display = "none";
                 playlists.style.display = "none";
                 document.getElementById("loading-screen").style.display = "none";
+
+                db.find({}, function(err,docs){
+                  if(err) console.log(err);
+                  console.log(docs);
+                  if(docs.length <= 0){
+                    console.log("Empty.");
+                    db.insert(settingsDB, function(err, docs){
+                      if(err) console.log(err);
+                    });
+                  } else {
+                    UIColor = docs[0].interface;
+                    console.log(UIColor);
+
+                    updateUI();
+
+                  }
+                });
+
+
+
             }
 
         }
