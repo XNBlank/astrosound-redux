@@ -1,12 +1,17 @@
 {
   "name": "astrosound",
+  "description": "A modern music player made with Electron",
   "version": "0.0.5",
+  "author": "AstroSound <koruten@gmail.com>",
+  "homepage": "http://astrosound.xnblank.net/",
   "main": "main.js",
   "dependencies": {
     "jsmediatags": "^3.0.5",
     "nedb": "^1.8.0",
     "open": "0.0.5",
     "spotify-web-api-node": "^2.3.0",
-    "av": "^0.4.8"
+    "av": "^0.4.8",
+    "js-binary": "^1.1.0",
+    "electron-squirrel-startup": "1.0.0"
   }
 }

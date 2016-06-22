@@ -142,6 +142,14 @@ h3{
     }
 }
 
+.label-small{
+  padding-top: 35px;
+  font-size: 10px;
+  text-align: center;
+  width: 200px;
+  height: 50px;
+}
+
 .mdl-mini-footer .playbar{
     margin: 16px 0;
     position: absolute;
@@ -157,6 +165,7 @@ h3{
     width: 65%;
     overflow: hidden;
     height: 64px;
+    z-index: -1;
 }
 
 .section{
@@ -258,6 +267,10 @@ h3{
   cursor: pointer;
 }
 
+#library .activeSong{
+  background: rgba(125,125,125,0.2);
+}
+
 
 .mdl-layout__header__center{
   position: absolute;
@@ -336,6 +349,18 @@ h3{
     transition: opacity .25s ease-in-out;
     -moz-transition: opacity .25s ease-in-out;
     -webkit-transition: opacity .25s ease-in-out;
+}
+
+#volume-level{
+  display: inline-block;
+  width: 30px;
+  height: 1px;
+  transform: rotateZ(90deg);
+  position: fixed;
+  top: 16px;
+  left: 145px;
+  text-align: center;
+  font-size: 10px;
 }
 
 #volumebar{

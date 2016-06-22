@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>AstroSound v1.1</title>
+        <title>AstroSound</title>
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" id="colorScheme" href="https://code.getmdl.io/1.1.3/material.deep_orange-red.min.css">
@@ -96,7 +96,7 @@
 
                   <div id="library">
                     <table id="tb-library" class="mdl-data-table mdl-js-data-table">
-                      <thead>
+                      <thead id="lib-head">
                         <tr>
                           <th class="mdl-data-table__cell--non-numeric">Song Title</th>
                           <th class="mdl-data-table__cell--non-numeric">Artist</th>
@@ -128,7 +128,15 @@
                     <div class="content">
                         <div class="mdl-grid">
                           <div class="mdl-cell mdl-cell--4-col">
-                          
+                            <!--
+                            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="lastfm-button">
+                              Connect to LastFM
+                            </button>
+                            <label for="lastfm-button" class="mdl-textfield__label label-small">Currently Not Connected.</label>
+
+                          -->
+
+                            <p>Astrosound v0.5 BETA RELEASE</p>
                           </div>
 
                           <div class="mdl-cell mdl-cell--4-col">
@@ -190,6 +198,7 @@
               <div class="mdl-mini-footer__right-section">
 
                   <div id="volumebar">
+                      <p id="volume-level">100%</p>
                       <p style="width:150px">
                         <input class="mdl-slider mdl-js-slider" type="range" id="volume" min="0" max="100" value="100" step="1">
                       </p>
@@ -222,5 +231,6 @@
         <script src="./js/modal.js"></script>
         <script src="./js/music.js"></script>
         <script src="./modules.js"></script>
+
     </body>
 </html>

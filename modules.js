@@ -2,6 +2,7 @@
         var fs = require('fs');
 
         var remote = require('electron').remote.app;
+
         var BrowserWindow = require('electron').remote.BrowserWindow;
         var window = BrowserWindow.getFocusedWindow();
         window.$ = window.jQuery = require('./js/vendor/jquery.min.js');
@@ -22,8 +23,6 @@
         }
 
         var UIColor = "orange";
-
-
 
 
         var loadTimer = null;

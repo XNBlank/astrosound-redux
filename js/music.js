@@ -1,6 +1,7 @@
 (function(){
     var fs = require('fs');
     var remote = require('electron').remote.app;
+    var menuRemote = require('electron').remote;
     var BrowserWindow = require('electron').remote.BrowserWindow;
     var window = BrowserWindow.getFocusedWindow();
     window.$ = window.jQuery = require('./js/vendor/jquery.min.js');
@@ -14,9 +15,14 @@
 
     var music = document.getElementById('audio_player');
     var paused;
+    var stopped;
+    var playlists = {};
+    var favourites = {};
     var repeat = false;
     var shuffle = false;
     var volumeHidden = true;
+    var sort = { title : 1 };
+    var sortOrd = "DEC";
     var curSong = 0;
     songInfo = ({});
     songList = [];
@@ -26,6 +32,65 @@
 
     var Datastore = require('nedb')
     , db = new Datastore({ filename: savePath, autoload: true });
+
+
+    const {Menu, MenuItem} = menuRemote;
+
+    const menu = new Menu();
+    menu.append(new MenuItem({label: 'Sort by', enabled: 'false', click() { console.log('item 1 clicked'); }}));
+    menu.append(new MenuItem({type: 'separator'}));
+    menu.append(new MenuItem({label: 'Name', click() { sortByName() }}));
+    menu.append(new MenuItem({label: 'Artist', click() { sortByArtist() }}));
+    menu.append(new MenuItem({label: 'Album', click() { sortByAlbum() }}));
+    menu.append(new MenuItem({label: 'Time', click() {  }}));
+    menu.append(new MenuItem({label: 'Favourites', click() {  }}));
+
+    document.getElementById("lib-head").addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      menu.popup(menuRemote.getCurrentWindow());
+    }, false);
+
+    function sortByName(){
+      if(sortOrd == "DEC" && sort == {title : 1}) {
+        sort = { title : -1 };
+        sortOrd = "ASC";
+      } else {
+        sort = { title : 1 };
+        sortOrd = "DEC";
+      }
+      console.log(sort);
+      console.log(sortOrd);
+      //$('#inner').empty();
+      loadDir(db);
+    }
+
+    function sortByArtist(){
+      if(sortOrd == "DEC" && sort == {artist : 1}) {
+        sort = { artist : -1 };
+        sortOrd = "ASC";
+      } else {
+        sort = { artist : 1 };
+        sortOrd = "DEC";
+      }
+      console.log(sort);
+      console.log(sortOrd);
+      //$('#inner').empty();
+      loadDir(db);
+    }
+
+    function sortByAlbum(){
+      if(sortOrd == "DEC" && sort == {album : 1}) {
+        sort = { album : -1 };
+        sortOrd = "ASC";
+      } else {
+        sort = { album : 1 };
+        sortOrd = "DEC";
+      }
+      console.log(sort);
+      console.log(sortOrd);
+      //$('#inner').empty();
+      loadDir(db);
+    }
 
 //Gets HOME of users computer. Used to grab a path to save data.
     function getUserHome() {
@@ -152,7 +217,6 @@ Was used to grab album art from ID3. Was too slow and failed to work 80% of the 
               });
             });
 
-
             //$("#loadingMessage").html("Importing " + title + " : " + artist + " - " + album);
             cb(metadata);
             //var stackSize = computeMaxCallStackSize();
@@ -237,12 +301,12 @@ function searchSpotify(title, artist, album){
             console.log(audio_player.currentTime);
             isDragging = false;
             audio_player.play();
-            paused = false;
+            stopped = false;
         })
         .mousedown(function(){
             isDragging = true;
             audio_player.pause();
-            paused = true;
+            stopped = true;
         })
         .mousemove(function(){
             if(isDragging){
@@ -279,7 +343,7 @@ function loadDir(database){
       document.getElementById("playlists").style.display = "none";
       document.getElementById("loading-screen").style.display = "initial";
 
-      database.find({}, function (err, docs) {
+      database.find({}).sort(sort).exec(function (err, docs) {
         for(var i = 0; i < songCount; i++){
           //console.log("Song No. " + i)
           //console.log(err);
@@ -306,21 +370,22 @@ function loadDir(database){
            var safeName;
            var safeArtist;
            var safeAlbum;
+           var filename = safePath.substring(safePath.lastIndexOf("\\") + 1);
 
            if(data.title == undefined) {
-             safeName = safePath;
+             safeName = filename;
            } else {
              safeName = data.title;
            }
 
            if(data.artist == undefined) {
-             safeArtist = "";
+             safeArtist = "Unknown";
            } else {
              safeArtist = data.artist;
            }
 
            if(data.album == undefined) {
-             safeAlbum = "";
+             safeAlbum = "Unknown";
            } else {
              safeAlbum = data.album;
            }
@@ -343,7 +408,7 @@ function loadDir(database){
         document.getElementById("favorites").style.display = "none";
         document.getElementById("playlists").style.display = "none";
         document.getElementById("loading-screen").style.display = "none";
-
+        $('#inner').empty()
         //Add to the music page.
         document.getElementById("inner").innerHTML += output;
       });
@@ -456,8 +521,8 @@ $(function () {
             console.log(_name);
             console.log(_dir[0]);
             file = URL.createObjectURL(files[0]);
-            paused = false;
-            console.log(paused);
+            stopped = false;
+            console.log(stopped);
             audio_player.src = file;
             audio_player.currentTime = 0;
             audio_player.play();
@@ -467,7 +532,9 @@ $(function () {
     $(function(){
       $(document).on('click', ".song-row", function() {
         console.log("Hi");
+        $(".song-row").removeClass("activeSong");
         var song = $(this).attr("value");
+        $(this).addClass("activeSong");
         var _curSong = $(this).attr("id");
         curSong = parseInt(_curSong.replace("songNo", ""));
         console.log(song);
@@ -491,7 +558,7 @@ $(function () {
           console.log(docs[0].album);
         });
 
-        paused = false;
+        stopped = false;
         audio_player.src = song;
         audio_player.currentTime = 0;
         audio_player.play();
@@ -510,6 +577,7 @@ $(function () {
             if(isDragging){
                 var setVol = $(this).val();
                 console.log(setVol / 100);
+                $("#volume-level").html(setVol + "%");
                 audio_player.volume = setVol / 100;
 
                 if(audio_player.volume < 0.7 && audio_player.volume > 0){
@@ -541,7 +609,7 @@ $(function () {
 
 
     function timeUpdate(){
-        if(paused == false){
+        if(stopped == false){
             $("#playback").val(audio_player.currentTime);
             $("#playback").prop("max", audio_player.duration);
 
@@ -567,7 +635,7 @@ $(function () {
                 }
             } else {
                 if(timeLeft <= 1){
-                    //paused = true;
+                    //stopped = true;
                     var _cSong = $('*[id^="songNo"]');
                     var _i;
                     var i = _cSong.length-1;
@@ -597,7 +665,7 @@ $(function () {
         }
 
 
-        if(paused == false){
+        if(stopped == false){
             document.getElementById("play_button").className = "mdl-button mdl-js-button mdl-button--icon mdl-button--colored";
             document.getElementById("stop_button").className = "mdl-button mdl-js-button mdl-button--icon";
         }else{
@@ -613,7 +681,7 @@ $(function () {
 
 document.getElementById("play_button").addEventListener("click", function(e) {
     audio_player.play();
-    paused = false;
+    stopped = false;
     document.getElementById("play_button").className = "mdl-button mdl-js-button mdl-button--icon mdl-button--colored";
     document.getElementById("stop_button").className = "mdl-button mdl-js-button mdl-button--icon";
     console.log("Play is pressed");
@@ -622,7 +690,7 @@ document.getElementById("play_button").addEventListener("click", function(e) {
 document.getElementById("stop_button").addEventListener("click", function(e) {
     audio_player.pause();
     audio_player.currentTime = 0;
-    paused = true;
+    stopped = true;
     document.getElementById("stop_button").className = "mdl-button mdl-js-button mdl-button--icon mdl-button--colored";
     document.getElementById("play_button").className = "mdl-button mdl-js-button mdl-button--icon";
     console.log("Stop is pressed");
