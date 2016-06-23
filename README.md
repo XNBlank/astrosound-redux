@@ -8,3 +8,12 @@ AstroSound is my dream music player. It's something that I want to be easy to us
 ![AstroSound](http://i.imgur.com/idmXRRE.png)
 
 ![AstroSound](http://i.imgur.com/n2bxXpH.gif)
+
+## How to build from source
+
+If you want to build from the source:
+- You'll first need to install [node.js](https://nodejs.org/en/).
+- Clone the repo and open your console in the root folder of the clone, and run `npm install`.
+- Then in the same console run `npm install electron-packager --save-dev`.
+- Finally, run `electron-packager <sourcedir> <appname> --platform=<platform> --arch=<arch> [optional flags...]` (Refer to [Electron-Packager](https://github.com/electron-userland/electron-packager) for help.)
+- A folder should be generated with your compiled application.
