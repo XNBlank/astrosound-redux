@@ -1,15 +1,15 @@
 "use strict";
 
-var app = require('electron').app;
+//var app = require('electron').app;
 var BrowserWindow = require('electron').BrowserWindow;
 var open = require('open');
 const path = require('path');
-
+const globalShortcut = require('electron').globalShortcut;
 const mainWindow = null;
 
 if (require('electron-squirrel-startup')) return;
 
-//const app = require('app');
+const app = require('app');
 
 // this should be placed at top of main.js to handle setup events quickly
 if (handleSquirrelEvent()) {
@@ -56,7 +56,7 @@ function handleSquirrelEvent() {
       // Install desktop and start menu shortcuts
       spawnUpdate(['--createShortcut', exeName]);
 
-      setTimeout(app.quit, 1000);
+      setTimeout(app.quit, 5000);
       return true;
 
     case '--squirrel-uninstall':
@@ -100,6 +100,14 @@ app.on('ready', function() {
         icon: __dirname + '/app.png'
     });
 
+    // Register a 'CommandOrControl+X' shortcut listener.
+    const ret = globalShortcut.register('CommandOrControl+Shift+I', () => {
+      mainWindow.openDevTools();
+    });
+
+    const rel = globalShortcut.register('CommandOrControl+R', () => {
+      mainWindow.reload();
+    });
 
 
     mainWindow.loadURL('file://' + __dirname + '/index.html');

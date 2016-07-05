@@ -2,6 +2,7 @@
     var fs = require('fs');
     var remote = require('electron').remote.app;
     var menuRemote = require('electron').remote;
+
     var BrowserWindow = require('electron').remote.BrowserWindow;
     var window = BrowserWindow.getFocusedWindow();
     window.$ = window.jQuery = require('./js/vendor/jquery.min.js');
@@ -50,6 +51,9 @@
       menu.popup(menuRemote.getCurrentWindow());
     }, false);
 
+
+
+
     function sortByName(){
       if(sortOrd == "DEC" && sort == {title : 1}) {
         sort = { title : -1 };
@@ -63,6 +67,7 @@
       //$('#inner').empty();
       loadDir(db);
     }
+
 
     function sortByArtist(){
       if(sortOrd == "DEC" && sort == {artist : 1}) {
@@ -182,10 +187,12 @@ Was used to grab album art from ID3. Was too slow and failed to work 80% of the 
 
         var metadata;
 
+        console.log("!!! PATH " + path);
+
         jsmediatags.read(path, {
 
           onSuccess: function(tag) {
-            //console.log(tag);
+            console.log(tag);
             var title = tag.tags.title;
             var album = tag.tags.album;
             var artist = tag.tags.artist;
@@ -227,6 +234,7 @@ Was used to grab album art from ID3. Was too slow and failed to work 80% of the 
             //searchSpotify(title,artist,album);
 
             $(".info-bar").html("<p>"+title + "<br>" + artist + " - " + album+"</p>");
+            $('#windowTitle').html(title + " / " + artist + " / " + album);
 
 
           },
@@ -370,7 +378,8 @@ function loadDir(database){
            var safeName;
            var safeArtist;
            var safeAlbum;
-           var filename = safePath.substring(safePath.lastIndexOf("\\") + 1);
+           var fn_ex = safePath.substring(safePath.lastIndexOf("\\") + 1);
+           var filename = fn_ex.substring(fn_ex.lastIndexOf("\/") + 1);
 
            if(data.title == undefined) {
              safeName = filename;
@@ -432,7 +441,7 @@ for (var i in files){
         getFiles(name, files_);
     } else {
         if(name.indexOf(".mp3") > -1 ||name.indexOf(".ogg") > -1 ||name.indexOf(".m4a") > -1 ||name.indexOf(".wav") > -1){
-            //console.log(name);
+            console.log("Location of file : " + name);
             files_.push(name);
 
         }
@@ -464,6 +473,7 @@ $(function () {
             } else {
                 var dirList = getFiles(files[i].path);
                 //alert("Got path " + files[i].path);
+
                 savedDirs.push(files[i].path);
                 console.log(dirList);
 
@@ -473,7 +483,7 @@ $(function () {
                     var __dir = files[i].path;
                     console.log(__song);
                     console.log(files[i].path);
-                    getID3( __song, __dir + "\\" + __song, function(songID3){
+                    getID3( __song, dirList[j], function(songID3){
                       console.log(songList);
                       $("#loadingMessage").html("Importing " + songID3[0] + " : " + songID3[2] + " - " + songID3[1]);
                     });
@@ -485,7 +495,7 @@ $(function () {
                 setTimeout(function () {
                   document.getElementById("inner").innerHTML += "";
                   loadDir(db);
-                }, 350);
+                }, (100 * dirList.length));
 
             }
         }
@@ -530,7 +540,8 @@ $(function () {
     });
 
     $(function(){
-      $(document).on('click', ".song-row", function() {
+      //$(document).on('click', ".song-row", function() {
+      $(document).on('dblclick', '.song-row', function(){
         console.log("Hi");
         $(".song-row").removeClass("activeSong");
         var song = $(this).attr("value");
@@ -653,7 +664,7 @@ $(function () {
 
 
                     console.log(i);
-                    $("#songNo" + _i).trigger('click');
+                    $("#songNo" + _i).trigger('dblclick');
 
                 }
 
@@ -680,11 +691,15 @@ $(function () {
 
 
 document.getElementById("play_button").addEventListener("click", function(e) {
-    audio_player.play();
-    stopped = false;
-    document.getElementById("play_button").className = "mdl-button mdl-js-button mdl-button--icon mdl-button--colored";
-    document.getElementById("stop_button").className = "mdl-button mdl-js-button mdl-button--icon";
-    console.log("Play is pressed");
+    if(paused == true || stopped == true){
+      audio_player.play();
+      stopped = false;
+      paused = false;
+      document.getElementById("play_button").className = "mdl-button mdl-js-button mdl-button--icon mdl-button--colored";
+      document.getElementById("stop_button").className = "mdl-button mdl-js-button mdl-button--icon";
+      console.log("Play is pressed");
+    }
+
 });
 
 document.getElementById("stop_button").addEventListener("click", function(e) {
@@ -715,7 +730,7 @@ $(function(){
 
 
       console.log(i);
-      $("#songNo" + _i).trigger('click');
+      $("#songNo" + _i).trigger('dblclick');
 
     });
 });
@@ -740,7 +755,7 @@ $(function(){
 
 
       console.log(i);
-      $("#songNo" + _i).trigger('click');
+      $("#songNo" + _i).trigger('dblclick');
 
     });
 });
