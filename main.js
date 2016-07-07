@@ -1,6 +1,6 @@
 "use strict";
 
-//var app = require('electron').app;
+const app = require('electron').app;
 var BrowserWindow = require('electron').BrowserWindow;
 var open = require('open');
 const path = require('path');
@@ -9,7 +9,7 @@ const mainWindow = null;
 
 if (require('electron-squirrel-startup')) return;
 
-const app = require('app');
+//const app = require('app');
 
 // this should be placed at top of main.js to handle setup events quickly
 if (handleSquirrelEvent()) {
