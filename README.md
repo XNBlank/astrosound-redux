@@ -9,6 +9,12 @@ AstroSound is my dream music player. It's something that I want to be easy to us
 
 ![AstroSound](http://i.imgur.com/n2bxXpH.gif)
 
+## AstroSound is in public testing!
+
+You can download the newest release from the [website](http://astrosound.xnblank.net/), or the [release tab](https://github.com/XNBlank/astrosound-redux/releases).
+
+**Arch Linux** users can download it from the [AUR](https://aur.archlinux.org/packages/astrosound-redux-git)
+
 ## How to build from source
 
 If you want to build from the source:
