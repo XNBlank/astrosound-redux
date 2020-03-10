@@ -8,7 +8,7 @@
   "dependencies": {
     "jsmediatags": "^3.0.5",
     "nedb": "^1.8.0",
-    "open": "0.0.5",
+    "open": "7.0.3",
     "spotify-web-api-node": "^2.3.0",
     "av": "^0.4.8",
     "js-binary": "^1.1.0",
